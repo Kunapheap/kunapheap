@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Navbar() {
+function SideBar() {
   return (
     <div>
-      Hello
+        Side bar
     </div>
   )
 }
 
-export default Navbar
+export default SideBar
