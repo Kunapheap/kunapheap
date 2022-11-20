@@ -1,0 +1,121 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+model Role {
+  role_id String @id @default(uuid()) 
+  role_role String
+  user User []
+}
+
+model User {
+  user_id   String @id @default(uuid())
+  user_username String @unique
+  user_password String
+  user_phone_number String
+  user_image_link String
+  user_email String
+  user_created_date DateTime @default(now())
+  role Role @relation(references: [role_id],fields: [role_id])
+  role_id String
+  order Order[]
+  cart Cart[]
+}
+
+model Category {
+  category_id String @id @default(uuid())
+  category_name String
+  product Product[]
+}
+
+model Product {
+  product_id String @id @default(uuid())
+  product_name String 
+  product_price String
+  product_discount Float
+  category Category @relation(references: [category_id],fields: [category_id])
+  category_id String
+  item Item[]
+  image Image[]
+}
+
+model Cart {
+  cart_id String @id @default(uuid())
+  user User @relation(references: [user_id], fields: [user_id])
+  user_id String @unique
+  item Item[]
+}
+
+model Order {
+  order_id String @id @default(uuid())
+  user User @relation(references: [user_id],fields: [user_id])
+  user_id String
+  order_status String
+  order_created_date DateTime @default(now())
+  order_last_modify_date DateTime @default(now())
+  order_amount Int
+  orderOnItem OrderOnItem[]
+}
+
+model Image {
+  image_id String @id @default(uuid())
+  image_link String 
+  product Product @relation(references: [product_id],fields: [product_id])
+  product_id String 
+}
+
+model Item {
+  item_id String @id @default(uuid())
+  product Product @relation(references: [product_id],fields: [product_id])
+  product_id String
+  item_amount Int
+  item_created_date DateTime @default(now())
+  item_last_modify_date DateTime @default(now())
+  ColorOnSide ColorOnSize @relation(references: [color_id,size_id],fields: [color_id,size_id])
+  color_id String
+  size_id String
+  orderOnItem OrderOnItem[]
+  cart Cart @relation(references: [cart_id],fields: [cart_id])
+  cart_id String 
+}
+
+model OrderOnItem {
+  @@id([order_id,item_id])
+  order Order @relation(references: [order_id],fields: [order_id])
+  order_id String
+  item Item @relation(references: [item_id],fields: [item_id])
+  item_id String
+}
+
+
+model Color {
+  color_id String @id @default(uuid())
+  color_name String 
+  size ColorOnSize[]
+}
+
+model Size {
+  size_id String @id @default(uuid())
+  size_name String
+  color ColorOnSize[]
+}
+
+model ColorOnSize {
+  color Color @relation(fields: [color_id],references: [color_id])
+  color_id String
+  size Size @relation(fields: [size_id],references: [size_id])
+  size_id String
+  @@id([color_id,size_id])
+  item Item[]
+}
