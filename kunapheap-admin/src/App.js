@@ -1,6 +1,7 @@
 import Dashboard from "./components/Dashboard";
 import Header from "./components/Header";
 import SideBar from "./components/SideBar";
+import LoginAdmin from "./Pages/LoginAdmin";
 import "./styles/App.css";
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
           </div>
           <div className="lg:w-[80%] w-full">
           <Header />
-            <Dashboard />
+            <LoginAdmin />
           </div>
         </div>
 
