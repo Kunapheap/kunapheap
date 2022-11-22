@@ -3,4 +3,4 @@
     "ext": ".js",
     "ignore": [],
     "exec": "node ./app.js"
-  }
+}
