@@ -13,6 +13,8 @@ module.exports = {
       'blue' : colors.blue,
       'black' : colors.black,
       'slate' : colors.slate,
+      'white' : colors.white,
+      'red' : colors.red,
     },
     extend: {},
   },
