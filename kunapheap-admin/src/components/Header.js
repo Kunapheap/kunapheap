@@ -32,7 +32,6 @@ function Clock() {
     if (text.length < 2) {
       text = "0".concat(text);
     }
-
     return text;
   }
   const date = new Date();

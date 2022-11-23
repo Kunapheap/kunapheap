@@ -32,7 +32,7 @@ function LoginAdmin() {
         "user_password" : password
     })
      dispatch(setUser(res.data))
-     setAlert("hello",user.user_username)
+     setAlert(user.user_username)
     }catch(err) {
       setAlert(err.response.data.msg)
     } 

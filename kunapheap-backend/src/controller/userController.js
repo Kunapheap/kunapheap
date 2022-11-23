@@ -1,4 +1,4 @@
-const { getUsername } = require("../service/userService");
+const {getUsername} = require('../service/userService')
 
 async function userLogin(req, res) {
   const user = await getUsername(req.body.user_username);
@@ -7,7 +7,8 @@ async function userLogin(req, res) {
     res.status(404).send({msg : "invalid user"})
   }
   if (user) {
-    if(user.role_id != '0675710b-cbfa-46da-b276-1215d1ec8b91')
+    console.log(user)
+    if(user.role_id != 'e1d257a1-83a9-465a-9cc8-c32ad5e8dd43')
     {
         res.status(401).send({msg : ' Unauthorized'})
     }
