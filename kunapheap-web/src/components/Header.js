@@ -1,16 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../assets/logo.svg";
 import { FaUser, FaShoppingCart, FaSearch } from "react-icons/fa";
 import { FiSettings } from "react-icons/fi";
 import { ImSwitch } from "react-icons/im";
 import { BsTrash } from "react-icons/bs";
 import "../style/App.css";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "../app/slice/userSlice";
+
+import {useNavigate} from 'react-router-dom'
 
 function Header() {
 
   const [toggleCart, setToggleCart] = useState(false);
   const [toggleProfile, setToggleProfile] = useState(false);
 
+
+
+  const user = useSelector(state => state.user.value)
 
   return (
     <div className="w-full h-16 border-2 flex justify-between px-2 md:px-8 bg-white z-20 sticky top-0">
@@ -34,7 +41,8 @@ function Cart({toggleCart,setToggleCart,setToggleProfile}) {
     setToggleProfile(false)
   }
   
-  const [cartItems, setCartItems] = useState([1,2,3,4,5,6]);
+  // const [cartItems, setCartItems] = useState([1,2,3,4,5,6]);
+  const cartItems = [1,2,3,4,5]
   return (
     <>
       <div className="relative">
@@ -67,19 +75,33 @@ function Cart({toggleCart,setToggleCart,setToggleProfile}) {
   );
 }
 
+// import {useSelector,useDispatch} from 'react-redux'
+
 function Profile({toggleProfile, setToggleProfile,setToggleCart}) {
 
   const handleToggle = () => {
     setToggleProfile((prev) => !prev)
     setToggleCart(false)
   }
+
+  const user = useSelector(state => state.user.value)
+  const dispatch = useDispatch()
+  const navigater = useNavigate()
+
+  useEffect(()=> {
+   
+  },[user])
   
   return (
     <>
       <div className="relative">
-        <FaUser onClick={handleToggle} className="md:text-2xl"  />
+        {
+          user.user_image_link === undefined ? <FaUser  className="md:text-2xl" onClick={() => navigater('/login') } /> 
+          : <img src={user.user_image_link} onClick={handleToggle} className="w-8 border-2 border-primary rounded-full"  />
+        }
+        
         {toggleProfile && (
-          <div className="absolute w-44 md:w-60 h-60 md:h-72 border-2 bg-white right-0 top-7 rounded-md px-3 py-1 shadow-md">
+          <div className="absolute w-48 md:w-60 h-64 md:h-72 border-2 bg-white right-0 top-7 rounded-md px-3 py-1 shadow-md">
             <p className="text-secondary text-right cursor-pointer underline hover:text-primary">
               Edit
             </p>
@@ -90,15 +112,15 @@ function Profile({toggleProfile, setToggleProfile,setToggleCart}) {
                 src="https://kunapheap.s3.ap-southeast-1.amazonaws.com/avatar.png"
               />
               <div className="mx-2">
-                <p className="font-bold -mb-1 md:text-xl ">Cinderila</p>
+                <p className="font-bold -mb-1 md:text-xl ">{user.user_username}</p>
                 <p className="text-xs font-light sm:font-normal">username</p>
               </div>
             </div>
             <p className="font-semibold -mb-1 md:mb-1 mt-1 md:text-xl">My account</p>
             <div className="">
-              <p className="font-semibold -mb-1 mt-1 sm:text-[1rem]">cinderella@gmail.com</p>
+              <p className="font-semibold -mb-1 mt-1 sm:text-[1rem]">{user.user_email}</p>
               <p className="text-xs">Email</p>
-              <p className="font-semibold -mb-1 sm:text-[1rem]">+855 12 86 18 61</p>
+              <p className="font-semibold -mb-1 sm:text-[1rem]">{user.user_phone_number}</p>
               <p className="text-xs">Telephone</p>
             </div>
             <p className="font-semibold py-1 md:text-xl sm:mt-1">Setting</p>
@@ -106,7 +128,11 @@ function Profile({toggleProfile, setToggleProfile,setToggleCart}) {
               <FiSettings />
               <p className="text-sm md:text-[1rem] hover:text-secondary">Change Password</p>
             </div>
-            <div className="flex items-center gap-1 p-1 cursor-pointer">
+            <div className="flex items-center gap-1 p-1 cursor-pointer" onClick={() => {
+              localStorage.clear();
+              dispatch(setUser({}));
+              setToggleProfile(false)
+            }}>
               <ImSwitch className="" />
               <p className="text-sm md:text-[1rem] hover:text-secondary">Log Out</p>
             </div>

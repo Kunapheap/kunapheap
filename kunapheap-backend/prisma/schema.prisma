@@ -21,6 +21,8 @@ model Role {
 
 model User {
   user_id   String @id @default(uuid())
+  user_firstname String
+  user_lastname String
   user_username String @unique
   user_password String
   user_gender String
