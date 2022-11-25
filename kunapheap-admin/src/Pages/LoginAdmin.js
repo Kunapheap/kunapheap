@@ -36,10 +36,6 @@ function LoginAdmin() {
     }catch(err) {
       setAlert(err.response.data.msg)
     } 
-
-    // if(res.status == "404" ) {
-    //   console.log("first")
-    // }
     
   }
   return (

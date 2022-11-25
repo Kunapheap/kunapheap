@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom'
 
 import {AiOutlineLoading} from 'react-icons/ai'
 
-import { user_signUp_url } from "../app/api/apiRoute";
+import api from "../app/api/apiRoute";
 
 
 function SignUp({loading,setLoading}) {
@@ -42,7 +42,7 @@ function SignUp({loading,setLoading}) {
     } else {
       setLoading(true)
       try {
-        const auth_data = await axios.post(user_signUp_url, {
+        const auth_data = await axios.post(api.user_signUp_url, {
           user_firstname: firstName,
           user_lastname: lastName,
           user_username: username,

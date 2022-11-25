@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "../app/slice/userSlice";
-import { user_login_url } from "../app/api/apiRoute";
 
 import {useNavigate} from 'react-router-dom'
+import api from "../app/api/apiRoute";
 
 import axios from "axios";
 function Login() {
@@ -13,9 +11,6 @@ function Login() {
   const [loading,setLoading] = useState(false)
 
   const navigater = useNavigate()
-
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.value);
 
   useEffect(() => {
     setAlert("");
@@ -28,12 +23,13 @@ function Login() {
       try {
         setLoading(true)
         const auth_data = await axios.post(
-          user_login_url,
+          api.user_login_url,
           {
             user_username: username,
             user_password: password,
           },
         );
+        console.log(auth_data.data)
         localStorage.setItem('token','bearer '+auth_data.data.token)
         localStorage.setItem('username',auth_data.data.username)
         console.log(auth_data.data);
@@ -43,7 +39,7 @@ function Login() {
         
         window.location.reload();
       } catch (err) {
-        console.log(err);
+        setAlert(err.response.data.msg);
       }
     }
   };

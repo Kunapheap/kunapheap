@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import logo from "../assets/logo.svg";
+import { useDispatch, useSelector } from "react-redux";
 import { FaUser, FaShoppingCart, FaSearch } from "react-icons/fa";
 import { FiSettings } from "react-icons/fi";
 import { ImSwitch } from "react-icons/im";
 import { BsTrash } from "react-icons/bs";
+import logo from "../assets/logo.svg";
 import "../style/App.css";
-import { useDispatch, useSelector } from "react-redux";
+
 import { setUser } from "../app/slice/userSlice";
 
 import {useNavigate} from 'react-router-dom'
@@ -14,10 +15,6 @@ function Header() {
 
   const [toggleCart, setToggleCart] = useState(false);
   const [toggleProfile, setToggleProfile] = useState(false);
-
-
-
-  const user = useSelector(state => state.user.value)
 
   return (
     <div className="w-full h-16 border-2 flex justify-between px-2 md:px-8 bg-white z-20 sticky top-0">
@@ -40,8 +37,7 @@ function Cart({toggleCart,setToggleCart,setToggleProfile}) {
     setToggleCart((prev) => !prev)
     setToggleProfile(false)
   }
-  
-  // const [cartItems, setCartItems] = useState([1,2,3,4,5,6]);
+
   const cartItems = [1,2,3,4,5]
   return (
     <>
@@ -75,8 +71,6 @@ function Cart({toggleCart,setToggleCart,setToggleProfile}) {
   );
 }
 
-// import {useSelector,useDispatch} from 'react-redux'
-
 function Profile({toggleProfile, setToggleProfile,setToggleCart}) {
 
   const handleToggle = () => {
@@ -97,11 +91,11 @@ function Profile({toggleProfile, setToggleProfile,setToggleCart}) {
       <div className="relative">
         {
           user.user_image_link === undefined ? <FaUser  className="md:text-2xl" onClick={() => navigater('/login') } /> 
-          : <img src={user.user_image_link} onClick={handleToggle} className="w-8 border-2 border-primary rounded-full"  />
+          : <img src={user.user_image_link} onClick={handleToggle} alt="profile" className="w-8 border-2 border-primary rounded-full"  />
         }
         
         {toggleProfile && (
-          <div className="absolute w-48 md:w-60 h-64 md:h-72 border-2 bg-white right-0 top-7 rounded-md px-3 py-1 shadow-md">
+          <div className="absolute w-48 md:w-60 h-64 md:h-72 border-2 bg-white right-0 top-8 rounded-md px-3 py-1 shadow-md">
             <p className="text-secondary text-right cursor-pointer underline hover:text-primary">
               Edit
             </p>

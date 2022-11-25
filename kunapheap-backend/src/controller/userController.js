@@ -4,16 +4,19 @@ const { getRole } = require("../service/roleService");
 
 async function loginAdmin(req, res) {
   const user = await getUsername(req.body.user_username);
+  const role = await getRole({myRole : "Admin"})
 
   if (user == undefined) {
     res.status(404).send({ msg: "invalid user" });
   }
   if (user) {
     console.log(user);
-    if (user.role_id != getRole("Admin")) {
+    if (user.role_id != role) {
+      
       res.status(401).send({ msg: " Unauthorized" });
+      return;
     } else if (user.user_password === req.body.user_password) {
-      res.status(200).send(user);
+      res.status(200).json(user);
       return;
     }
     res.status(403).send({ msg: "incorrect password" });
@@ -28,7 +31,7 @@ async function logInUser(req, res) {
   }
   if (user) {
     console.log(user);
-    if (user.role_id != (await getRole("User"))) {
+    if (user.role_id != (await getRole({myRole : "User"}))) {
       res.status(401).send({ msg: " Unauthorized" });
     } else if (user.user_password === req.body.user_password) {
       const token = generateToken(user.user_id)
@@ -69,7 +72,6 @@ async function signUpUser(req, res) {
 }
 
 async function getUser(req,res) {
-  console.log("body",req.params.user_username)
   try{
     const user = await getUsername(req.params.user_username);
     console.log(user)
@@ -82,10 +84,6 @@ async function getUser(req,res) {
   }catch(err) {
     console.log(err)
   }
-
-  
-
-  
   
 }
 

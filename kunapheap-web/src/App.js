@@ -4,22 +4,26 @@ import Header from "./components/Header";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 
-import { get_user_url } from "./app/api/apiRoute";
-import { useDispatch, useSelector } from "react-redux";
+
+import { useDispatch } from "react-redux";
 import axios from "axios";
 import {Routes,Route} from 'react-router-dom'
 import { setUser } from "./app/slice/userSlice";
 import Home from "./pages/Home";
+import OurPoduct from "./pages/OurPoduct";
+import AboutUs from "./pages/AboutUs";
+import NewArrival from "./pages/NewArrival";
+
+import api from './app/api/apiRoute'
 
 // "./components/Dashboard";
 function App() {
   const [loading,setLoading] = useState(false)
-  const user = useSelector((state) => state.user.value);
   const dispatch = useDispatch();
 
   const getUserData = async () => {
     const res = await axios.get(
-      `http://localhost:8080/user/me/${localStorage.getItem("username")}`,
+      `${api.get_user_url}${localStorage.getItem("username")}`,
       {
 
         headers: {
@@ -27,14 +31,15 @@ function App() {
         },
       }
     );
-    console.log(res.data);
     dispatch(setUser(res.data));
   };
 
   useEffect(() => {
-    getUserData();
-    console.log('render')
-  }, []);
+    if(!localStorage.getItem('token') === undefined){
+      getUserData();
+    }
+    
+  },[]);
 
   useEffect(()=> {
 
@@ -47,6 +52,9 @@ function App() {
       <div className="mt-14">
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/ourproduct" element={<OurPoduct />} />
+        <Route path="/newarrival" element={<NewArrival />} />
+        <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/login" element={<Login loading={loading} setLoading={setLoading} />} />
         <Route path="/signup" element={<SignUp loading={loading} setLoading={setLoading} />} />
       </Routes>

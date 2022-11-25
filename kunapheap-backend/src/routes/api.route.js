@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {loginAdmin,signUpUser,logInUser} = require('../controller/userController')
+const {loginAdmin} = require('../controller/userController')
 
 router.get('/', async (req, res, next) => {
   res.send({ message: 'Ok api is working 🚀' });
