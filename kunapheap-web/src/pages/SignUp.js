@@ -1,14 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
-import {AiOutlineLoading} from 'react-icons/ai'
+import { AiOutlineLoading } from "react-icons/ai";
 
 import api from "../app/api/apiRoute";
+import Loading from "../components/Loading";
 
-
-function SignUp({loading,setLoading}) {
-
+function SignUp({ loading, setLoading }) {
   const [firstName, setfirstName] = useState("");
   const [lastName, setlastName] = useState("");
   const [username, setUsername] = useState("");
@@ -18,13 +17,11 @@ function SignUp({loading,setLoading}) {
   const [password, setpassword] = useState("");
   const [alert, setAlert] = useState("");
 
-  const navigater = useNavigate()
-
+  const navigater = useNavigate();
 
   useEffect(() => {
     setAlert("");
   }, [firstName, lastName, username, gender, phoneNumber, email, password]);
-
 
   const handleSignUp = async () => {
     if (
@@ -40,7 +37,7 @@ function SignUp({loading,setLoading}) {
     } else if (password.length <= 6) {
       setAlert("Passwords must more 6 than characters!");
     } else {
-      setLoading(true)
+      setLoading(true);
       try {
         const auth_data = await axios.post(api.user_signUp_url, {
           user_firstname: firstName,
@@ -51,19 +48,20 @@ function SignUp({loading,setLoading}) {
           user_phone_number: phoneNumber,
           user_email: email,
         });
-        localStorage.setItem('token','bearer '+auth_data.data.token)
-        localStorage.setItem('username',auth_data.data.username)
+        localStorage.setItem("token", "bearer " + auth_data.data.token);
+        localStorage.setItem("username", auth_data.data.username);
       } catch (err) {
         setAlert(err.response.data.msg);
       }
       setLoading(false);
-      navigater('/');
-      window.location.reload()
+      navigater("/");
+      window.location.reload();
     }
   };
 
   return (
     <div>
+      {loading && <Loading />}
       <div className="w-[100%] flex flex-col gap-y-3 lg:gap-y-5 items-center mt-14">
         <h1 className="font-bold text-xl lg:text-3xl text-primary">Sign Up</h1>
 
@@ -71,6 +69,7 @@ function SignUp({loading,setLoading}) {
         <div className="w-[80%] lg:w-[50%] flex flex-col gap-x-3 lg:flex-row gap-y-5">
           <div className="w-[100%] lg:w-[50%]">
             <p>First name</p>
+
             <input
               type="text"
               value={firstName}
@@ -181,20 +180,16 @@ function SignUp({loading,setLoading}) {
         <div className="w-[80%] lg:w-[50%] text-left">
           <p className="text-red-600">{alert}</p>
         </div>
-        {
+        {/* {
           loading && <AiOutlineLoading className="animate-spin text-bgColor text-2xl font-extrabold" />
-        }
-        
+        } */}
+
         <button
           onClick={handleSignUp}
-          className={ ` w-[80%] lg:w-[50%] bg-primary py-3 text-bgColor rounded-md  hover:bg-secondary hover:text-primary hover:font-bold`}
+          className={` w-[80%] lg:w-[50%] bg-primary py-3 text-bgColor rounded-md  hover:bg-secondary hover:text-primary hover:font-bold`}
         >
-          
           Sign up
-          
         </button>
-
-        
       </div>
     </div>
   );

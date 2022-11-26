@@ -5,7 +5,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import {Routes,Route} from 'react-router-dom'
 import { setUser } from "./app/slice/userSlice";
@@ -15,6 +15,7 @@ import AboutUs from "./pages/AboutUs";
 import NewArrival from "./pages/NewArrival";
 
 import api from './app/api/apiRoute'
+import Footer from "./components/Footer";
 
 // "./components/Dashboard";
 function App() {
@@ -35,10 +36,7 @@ function App() {
   };
 
   useEffect(() => {
-    if(!localStorage.getItem('token') === undefined){
       getUserData();
-    }
-    
   },[]);
 
   useEffect(()=> {
@@ -59,6 +57,7 @@ function App() {
         <Route path="/signup" element={<SignUp loading={loading} setLoading={setLoading} />} />
       </Routes>
       </div>
+   
       
     </div>
   );

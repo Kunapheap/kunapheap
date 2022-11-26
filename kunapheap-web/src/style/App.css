@@ -2,6 +2,9 @@
   .App-logo {
     animation: App-logo-spin infinite 20s ease-in-out;
   }
+  .App-logo-loading {
+    animation: App-logo-move infinite .8s ease-in-out;
+  }
 }
 
 @keyframes App-logo-spin {
@@ -14,4 +17,32 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+@keyframes App-logo-move {
+  /* 0% {
+    transform: translateY(0px);
+  }
+  25% {
+    transform: translateY(10px);
+  }
+  50% {
+    transform: translateY(25px);
+  }
+  75% {
+    transform: translateY(15px);
+  }
+  100% {
+    transform: translateY(5px);
+  } */
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+
 }

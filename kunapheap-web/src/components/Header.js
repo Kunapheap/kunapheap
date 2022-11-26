@@ -95,7 +95,7 @@ function Profile({toggleProfile, setToggleProfile,setToggleCart}) {
         }
         
         {toggleProfile && (
-          <div className="absolute w-48 md:w-60 h-64 md:h-72 border-2 bg-white right-0 top-8 rounded-md px-3 py-1 shadow-md">
+          <div className="absolute w-48 md:w-60 h-64 md:h-72 border-2 bg-white right-0 top-8 rounded-md px-3 py-1 shadow-md overflow-hidden">
             <p className="text-secondary text-right cursor-pointer underline hover:text-primary">
               Edit
             </p>
