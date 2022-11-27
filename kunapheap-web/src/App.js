@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
-
+import LayoutModel from "./components/LayoutModel";
 
 import { useDispatch } from "react-redux";
 import axios from "axios";
@@ -13,6 +13,7 @@ import Home from "./pages/Home";
 import OurPoduct from "./pages/OurPoduct";
 import AboutUs from "./pages/AboutUs";
 import NewArrival from "./pages/NewArrival";
+import ResetPassword from "./pages/ResetPassword";
 
 import api from './app/api/apiRoute'
 
@@ -59,7 +60,7 @@ function App() {
         <Route path="/signup" element={<SignUp loading={loading} setLoading={setLoading} />} />
       </Routes>
       </div>
-      
+
     </div>
   );
 }
