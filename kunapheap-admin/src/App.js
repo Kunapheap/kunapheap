@@ -4,7 +4,7 @@ import LoginAdmin from "./Pages/LoginAdmin";
 import "./styles/App.css";
 
 
-import {Routes,Route, useNavigate} from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import Dashboard from "./Pages/Dashboard";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -15,9 +15,9 @@ function App() {
   const navigator = useNavigate();
 
   const handleRoute = () => {
-    if(user.user_username === undefined){
+    if (user.user_username === undefined) {
       navigator('/login')
-    }else{
+    } else {
       navigator('/')
     }
   }
@@ -25,24 +25,24 @@ function App() {
 
   useEffect(() => {
     handleRoute()
-  },[user])
+  }, [user])
 
   return (
     <>
-        <div className="flex items-center">
-          <div className="hidden md:w-[20%] md:block">
-            <SideBar />
-          </div>
-          <div className="lg:w-[80%] w-full">
+      <div className="flex items-center">
+        <div className="hidden md:w-[20%] md:block">
+          <SideBar />
+        </div>
+        <div className="lg:w-[80%] w-full">
           <Header />
 
-         <Routes >
-          <Route path="/login" element={<LoginAdmin />} />
-          <Route path="/" element={<Dashboard />} />
-         </Routes>
-            
-          </div>
+          <Routes >
+            <Route path="/login" element={<LoginAdmin />} />
+            <Route path="/" element={<Dashboard />} />
+          </Routes>
+
         </div>
+      </div>
 
     </>
   );

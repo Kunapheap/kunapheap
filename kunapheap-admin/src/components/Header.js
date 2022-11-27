@@ -1,23 +1,38 @@
 import React, { useEffect, useState } from "react";
-import { IoNotificationsSharp , IoSearchSharp } from "react-icons/io5";
+import { IoNotificationsSharp, IoSearchSharp } from "react-icons/io5";
 import { FaUser } from "react-icons/fa";
 
 function Header() {
   return (
     <>
-      <div className=" flex flex-col-reverse md:flex-row items-center justify-between font-semibold">
-        <div className="relative md:w-1/4 w-full">
-        <input
-          className="w-full border-black outline-none  lg:mx-6 pl-8  h-7 lg:pl-7 lg:pr-4 bg-blue-300 rounded-full text-xs font-semibold placeholder:text-black placeholder:text-sm"
-          placeholder="search"
-        />
-        <IoSearchSharp className="absolute top-2 left-4 md:left-7" />
+      <div className=" flex flex-col-reverse md:flex-row items-center justify-between font-semibold py-2">
+        <div className="w-full flex flex-row relative">
+          <div className="w-[80%] relative pl-6">
+            <input
+              className=" w-[100%] pl-8
+              lg:w-[90%] border-primary outline-none py-2 lg:pl-8  bg-blue-300 rounded-full text-xs font-semibold placeholder:text-primary placeholder:text-lg"
+              placeholder="search"
+            />
+            <IoSearchSharp className="absolute top-2 lg:top-2 left-9 lg:left-8 text-primary" />
+          </div>
+          <div className="w-[15%] absolute left-80 top-1">
+            <select className="pl-2 text-sm w-full bg-slate-300 rounded-full text-slate-700 dark:placeholder-primary dark:focus:ring-blue-500">
+              <option value='id'>ID</option>
+              <option value='name'>Name</option>
+            </select>
+          </div>
         </div>
-        
-        <div className="flex py-2 gap-3 items-center mr-4 w-full justify-end">
+
+
+
+
+        <div className="justify-between pl-8 lg:pl-0 flex py-2 gap-3 items-center mr-4 w-full lg:justify-end">
           <Clock />
-          <IoNotificationsSharp className="text-[18px]" />
-          <FaUser className="" />
+          <div className="flex flex-row gap-3">
+
+            <IoNotificationsSharp className="text-[18px] text-primary" />
+            <FaUser className=" text-primary" />
+          </div>
         </div>
       </div>
     </>
