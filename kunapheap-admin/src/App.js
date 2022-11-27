@@ -32,11 +32,11 @@ function App() {
 
   return (
     <>
-        <div className="flex flex-row items-center xl:w-[90%] lg:[95%] md:w-full mx-auto">
+        <div className="flex flex-row items-center xl:w-[90%] lg:[95%] md:w-full mx-auto overflow-hidden">
           <div className="hidden md:w-[15%] lg:block md:mx-0 lg:mx-2">
             <SideBar />
           </div>
-          <div className="lg:w-[85%] w-full">
+          <div className="lg:w-[85%] w-full h-screen">
           <Header />
 
          <Routes >

@@ -3,9 +3,8 @@ import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
-import LayoutModel from "./components/LayoutModel";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 import {Routes,Route} from 'react-router-dom'
 import { setUser } from "./app/slice/userSlice";
@@ -16,7 +15,7 @@ import NewArrival from "./pages/NewArrival";
 import ResetPassword from "./pages/ResetPassword";
 
 import api from './app/api/apiRoute'
-import Footer from "./components/Footer";
+
 
 // "./components/Dashboard";
 function App() {
@@ -37,18 +36,22 @@ function App() {
   };
 
   useEffect(() => {
+    if(localStorage.length !== 0){
       getUserData();
-  },[]);
+    } else {
+      console.log("Hello")
+    } 
+  });
 
   useEffect(()=> {
 
   },[loading])
 
   return (
-    <div className="bg-bgColor w-full h-screen">
+    <div className="bg-bgColor w-full ">
       <Header />
       <Navbar />
-      <div className="mt-14">
+      <div className="mt-14 md:pt-14 pt-8">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/ourproduct" element={<OurPoduct />} />
@@ -56,6 +59,7 @@ function App() {
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/login" element={<Login loading={loading} setLoading={setLoading} />} />
         <Route path="/signup" element={<SignUp loading={loading} setLoading={setLoading} />} />
+        <Route path="/resetpassword" element={<ResetPassword />} />
       </Routes>
       </div>
     </div>

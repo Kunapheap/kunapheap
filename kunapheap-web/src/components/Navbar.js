@@ -6,7 +6,7 @@ function Navbar() {
   const [toggleNav, setToggleNav] = useState(false);
 
   return (
-    <div className="sm:-z-20 z-10 bg-yellow-50 w-full">
+    <div className="sm:-z-20 z-10 bg-yellow-50 w-full">   
       {toggleNav ? (
         <AiOutlineClose
           className={`text-4xl  fixed z-20 sm:hidden`}

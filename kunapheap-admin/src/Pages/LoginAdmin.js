@@ -40,8 +40,8 @@ function LoginAdmin() {
   }
   return (
     <div>
-      <div className='bg-blue-200 h-screen flex items-center justify-center'>
-        <div className='p-30 bg-bgColor w-[50%] h-[56%] rounded-3xl flex flex-col items-center '>
+      <div className='bg-blue-200 flex items-center justify-center h-screen'>
+        <div className=' p-0 lg:p-30 bg-bgColor w-[90%] md:w-[65%] lg:w-[50%] h-[56%] rounded-3xl flex flex-col items-center '>
 
           <h1 className='font-bold text-3xl mt-4 text-blue-400'>Welcome to Kunapheap</h1>
           <p className='text-blue-300 text-lg font-semibold pt-1'>Please input your detail!</p>
@@ -60,7 +60,7 @@ function LoginAdmin() {
             <p className='align-top font-bold text-3xl  text-blue-400'>&#160; __________</p>
           </div>
           <button onClick={handleConfirm}
-            className='bg-blue-400 px-44 py-2 rounded-lg font-bold text-white text-lg'>
+            className='bg-blue-400 px-36 md:px-44 py-2 rounded-lg font-bold text-white text-lg'>
             Confirm
           </button>
         </div>

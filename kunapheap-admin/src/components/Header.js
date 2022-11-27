@@ -5,7 +5,8 @@ import { FaUser } from "react-icons/fa";
 function Header() {
   return (
     <>
-      <div className=" flex flex-col-reverse md:flex-row items-center justify-between font-semibold py-2">
+    <div className="sticky top-0">
+    <div className=" flex flex-col-reverse md:flex-row items-center justify-between font-semibold py-2">
         <div className="w-full flex flex-row relative">
           <div className="w-[80%] relative pl-6">
             <input
@@ -35,6 +36,8 @@ function Header() {
           </div>
         </div>
       </div>
+    </div>
+      
     </>
   );
 }
