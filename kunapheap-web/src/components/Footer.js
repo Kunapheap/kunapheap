@@ -73,7 +73,7 @@ function Footer() {
 
   return (
     <>
-      <div className="bg-secondary w-full py-4 pb-7 lg:px-24 fixed bottom-0 grid grid-cols-2 md:grid-cols-4">
+      <div className="bg-secondary w-full py-4 pb-7 lg:px-24 grid grid-cols-2 md:grid-cols-4">
         {menus.map((item, index) => (
           <div className="mx-4 " key={index}>
             <h3 className="font-bold"> {item.menu} </h3>

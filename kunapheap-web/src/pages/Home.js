@@ -1,9 +1,7 @@
 import React from "react";
-<<<<<<< HEAD
+
 import Footer from "../components/Footer";
-=======
 import LayoutModel from "../components/LayoutModel";
->>>>>>> daranyBranch
 
 import model2 from '../assets/model2.png'
 import model3 from '../assets/model3.png'
