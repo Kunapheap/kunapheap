@@ -88,11 +88,10 @@ function Footer() {
             </ul>
           </div>
         ))}
-        
       </div>
       <div className="w-full bg-primary fixed bottom-0">
-          <p className="text-bgColor text-center">developing by Team168</p>
-        </div>
+        <p className="text-bgColor text-center">developing by Team168</p>
+      </div>
     </>
   );
 }

@@ -2,9 +2,11 @@ import React from 'react'
 
 function Dashboard() {
   return (
-    <div>
-      Hello admin 
-    </div>
+    <>
+      <div className='w-full h-screen bg-blue-200' >
+        Dashboard
+      </div>
+    </>
   )
 }
 
