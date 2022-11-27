@@ -17,7 +17,8 @@ module.exports = {
       primary: "#2B2B2B",
       secondary: "#7DBE7C",
       bgColor : '#FEFBF3',
-      red: colors.red
+      red: colors.red,
+      brown: colors.brown
     },
   },
   plugins: [require("tailwind-scrollbar")({ nocompatible: true })],
