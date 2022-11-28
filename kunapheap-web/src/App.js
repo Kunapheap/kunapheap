@@ -26,7 +26,6 @@ function App() {
     const res = await axios.get(
       `${api.get_user_url}${localStorage.getItem("username")}`,
       {
-
         headers: {
           Authorization: `${localStorage.getItem("token")}`,
         },

@@ -24,6 +24,7 @@ function SignUp({ loading, setLoading }) {
   }, [firstName, lastName, username, gender, phoneNumber, email, password]);
 
   const handleSignUp = async () => {
+    
     if (
       firstName === "" ||
       lastName === "" ||

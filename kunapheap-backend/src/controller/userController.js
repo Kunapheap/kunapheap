@@ -1,4 +1,4 @@
-const { getUsername, createUser } = require("../service/userService");
+const { getUsername, createUser,updateUserPassword } = require("../service/userService");
 const { generateToken } = require("../middleware/jwtGenerate");
 const { getRole } = require("../service/roleService");
 
@@ -87,4 +87,23 @@ async function getUser(req,res) {
   
 }
 
-module.exports = { loginAdmin, logInUser, signUpUser,getUser };
+async function resetPassword (req,res) {
+
+  const username = req.body.username;
+  const current_password = req.body.current_password;
+  const new_password = req.body.new_password;
+  try{
+    const user = await updateUserPassword(username,new_password,current_password)
+    if(user !== undefined) {
+      res.status(200).send({msg : 'success'})
+    } else {
+      res.status(403).send({msg : 'worng password !'})
+    }
+  } catch(err) {
+    console.log(err)
+    return;
+  }
+}
+
+
+module.exports = { loginAdmin, logInUser, signUpUser,getUser,resetPassword };

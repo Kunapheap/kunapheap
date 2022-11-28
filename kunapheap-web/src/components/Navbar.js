@@ -3,6 +3,7 @@ import { AiOutlineMenuUnfold, AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 function Navbar() {
+  
   const [toggleNav, setToggleNav] = useState(false);
 
   return (
@@ -14,7 +15,7 @@ function Navbar() {
         />
       ) : (
         <AiOutlineMenuUnfold
-          className={`text-4xl fixed z-10 sm:hidden`}
+          className={`text-4xl fixed top-16 z-10 sm:hidden`}
           onClick={() => setToggleNav(!toggleNav)}
         />
       )}
