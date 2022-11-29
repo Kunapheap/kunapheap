@@ -1,10 +1,17 @@
-const { getUsername, createUser,updateUserPassword } = require("../service/userService");
 const { generateToken } = require("../middleware/jwtGenerate");
 const { getRole } = require("../service/roleService");
 
+const {
+  getUsername,
+  createUser,
+  updateUserPassword,
+  updateUserDetail,
+  updateUserImage,
+} = require("../service/userService");
+
 async function loginAdmin(req, res) {
   const user = await getUsername(req.body.user_username);
-  const role = await getRole({myRole : "Admin"})
+  const role = await getRole({ myRole: "Admin" });
 
   if (user == undefined) {
     res.status(404).send({ msg: "invalid user" });
@@ -12,7 +19,6 @@ async function loginAdmin(req, res) {
   if (user) {
     console.log(user);
     if (user.role_id != role) {
-      
       res.status(401).send({ msg: " Unauthorized" });
       return;
     } else if (user.user_password === req.body.user_password) {
@@ -31,13 +37,13 @@ async function logInUser(req, res) {
   }
   if (user) {
     console.log(user);
-    if (user.role_id != (await getRole({myRole : "User"}))) {
+    if (user.role_id != (await getRole({ myRole: "User" }))) {
       res.status(401).send({ msg: " Unauthorized" });
     } else if (user.user_password === req.body.user_password) {
-      const token = generateToken(user.user_id)
+      const token = generateToken(user.user_id);
       res.status(200).send({
-        username : user.user_username,
-        token : token
+        username: user.user_username,
+        token: token,
       });
       return;
     }
@@ -66,44 +72,86 @@ async function signUpUser(req, res) {
   const token = generateToken(user.user_id);
 
   res.status(201).send({
-    token : token,
-    username : user.user_username
+    token: token,
+    username: user.user_username,
   });
 }
 
-async function getUser(req,res) {
-  try{
+async function getUser(req, res) {
+  try {
     const user = await getUsername(req.params.user_username);
-    console.log(user)
-    if(user == undefined) {
+    console.log(user);
+    if (user == undefined) {
       res.status(404).send({
-        msg : 'invalid user'
-      })
+        msg: "invalid user",
+      });
     }
-    res.status(200).send(user)
-  }catch(err) {
-    console.log(err)
+    res.status(200).send(user);
+  } catch (err) {
+    console.log(err);
   }
-  
 }
 
-async function resetPassword (req,res) {
-
+async function resetPassword(req, res) {
   const username = req.body.username;
   const current_password = req.body.current_password;
   const new_password = req.body.new_password;
-  try{
-    const user = await updateUserPassword(username,new_password,current_password)
-    if(user !== undefined) {
-      res.status(200).send({msg : 'success'})
+  try {
+    const user = await updateUserPassword(
+      username,
+      new_password,
+      current_password
+    );
+    if (user !== undefined) {
+      res.status(200).send({ msg: "success" });
     } else {
-      res.status(403).send({msg : 'worng password !'})
+      res.status(403).send({ msg: "worng password !" });
     }
-  } catch(err) {
-    console.log(err)
+  } catch (err) {
+    console.log(err);
     return;
   }
 }
 
+async function updateUserImages(req, res) {
+  const user = await updateUserImage(
+    req.file.originalname,
+    req.file.buffer,
+    req.params.user_username
+  );
+  return res.status(200).send(user);
+}
 
-module.exports = { loginAdmin, logInUser, signUpUser,getUser,resetPassword };
+async function updateUser(req, res) {
+  const firstname = req.body.firstname;
+  const lastname = req.body.lastname;
+  const phone_number = req.body.phone_number;
+  const username = req.body.username;
+  const email = req.body.email;
+  const password = req.body.password;
+
+  try {
+    const user = await updateUserDetail(
+      firstname,
+      lastname,
+      phone_number,
+      email,
+      username,
+      password
+    );
+    res.status(200).send(user);
+  } catch (err) {
+    console.log(err);
+    return;
+  }
+}
+
+module.exports = {
+  loginAdmin,
+  logInUser,
+  signUpUser,
+  getUser,
+  resetPassword,
+  updateUser,
+  updateUserImages,
+};

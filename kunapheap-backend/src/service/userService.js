@@ -1,4 +1,5 @@
 const { PrismaClient } = require("@prisma/client");
+const { putImageSingle } = require("./imageService");
 const prisma = new PrismaClient();
 
 const { getRole } = require("./roleService");
@@ -39,6 +40,61 @@ async function updateUserPassword(username, new_password, curent_password) {
   }
 }
 
+async function updateUserImage (filename,buffer,username) {
+  
+  var img_link = await putImageSingle(filename,buffer);
+
+  try{
+    const user = await prisma.user.update({
+      where : {
+        user_username : username
+      }, 
+      data : { 
+        user_image_link : img_link
+      }
+    })
+    return user;
+  } catch(err) {
+    console.log(err)
+  }
+
+}
+
+async function updateUserDetail(
+  firstname,
+  lastname,
+  phone_number,
+  email,
+  username,
+  password
+) {
+
+  try {
+    const verifiedUser = await getUsername(username);
+    if (verifiedUser.user_password === password) {
+      const user = await prisma.user.update({
+        where: {
+          user_username: username,
+        },
+        data: {
+          user_firstname: firstname,
+          user_lastname: lastname,
+          user_email: email,
+          user_phone_number: phone_number,
+        },
+      });
+      console.log(user);
+      return user;
+    } else {
+      console.log(user);
+      return;
+    }
+  } catch (err) {
+    console.log(err);
+    return err;
+  }
+}
+
 async function createUser(getUser) {
   const myRole = await getRole({ myRole: "User" });
 
@@ -68,4 +124,4 @@ async function createUser(getUser) {
   }
 }
 
-module.exports = { getUsername, createUser, updateUserPassword };
+module.exports = { getUsername, createUser, updateUserPassword,updateUserImage, updateUserDetail};

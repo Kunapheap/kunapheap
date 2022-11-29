@@ -9,4 +9,4 @@ const S3 = new S3Client({
     }
 })
 
-module.exports = {S3}
+module.exports = S3
