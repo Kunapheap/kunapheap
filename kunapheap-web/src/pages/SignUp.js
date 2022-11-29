@@ -2,8 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { AiOutlineLoading } from "react-icons/ai";
-
 import api from "../app/api/apiRoute";
 import Loading from "../components/Loading";
 
@@ -35,7 +33,7 @@ function SignUp({ loading, setLoading }) {
       password === ""
     ) {
       setAlert("Your input could not empty!");
-    } else if (password.length <= 6) {
+    } else if (password.length < 6) {
       setAlert("Passwords must more 6 than characters!");
     } else {
       setLoading(true);
@@ -53,6 +51,10 @@ function SignUp({ loading, setLoading }) {
         localStorage.setItem("username", auth_data.data.username);
       } catch (err) {
         setAlert(err.response.data.msg);
+        if(err) {
+          setLoading(false)
+          return
+        }
       }
       setLoading(false);
       navigater("/");
@@ -181,9 +183,6 @@ function SignUp({ loading, setLoading }) {
         <div className="w-[80%] lg:w-[50%] text-left">
           <p className="text-red-600">{alert}</p>
         </div>
-        {/* {
-          loading && <AiOutlineLoading className="animate-spin text-bgColor text-2xl font-extrabold" />
-        } */}
 
         <button
           onClick={handleSignUp}

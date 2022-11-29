@@ -31,7 +31,7 @@ function Navbar() {
            }`}
         onClick={() => setToggleNav(!toggleNav)}
       >
-        <div className="bg-secondary sm:h-8 h-screen w-[50%] sm:w-full sm:bg-bgColor -mx-1">
+        <div className="bg-secondary sm:h-8 h-screen w-[50%] sm:w-full sm:bg-bgColor -mx-1 mt-2">
           <ul className="pt-10 sm:pt-0 flex flex-col sm:flex-row sm:justify-between">
             <Link to="/">
               <li
