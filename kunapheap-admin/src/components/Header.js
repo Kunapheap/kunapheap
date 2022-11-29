@@ -5,39 +5,41 @@ import { FaUser } from "react-icons/fa";
 function Header() {
   return (
     <>
-    <div className="sticky top-0">
-    <div className=" flex flex-col-reverse md:flex-row items-center justify-between font-semibold py-2">
-        <div className="w-full flex flex-row relative">
-          <div className="w-[80%] relative pl-6">
-            <input
-              className=" w-[100%] pl-8
-              lg:w-[90%] border-primary outline-none py-2 lg:pl-8  bg-blue-300 rounded-full text-xs font-semibold placeholder:text-primary placeholder:text-lg"
-              placeholder="search"
-            />
-            <IoSearchSharp className="absolute top-2 lg:top-2 left-9 lg:left-8 text-primary" />
+      <div className="sticky top-0">
+        <div className=" flex flex-col-reverse md:flex-row items-center justify-between font-semibold py-2">
+          <div className="w-full flex flex-row relative">
+            <div className="w-[80%] relative pl-6">
+              <input
+                className=" w-[96%] pl-8
+              lg:w-[96%] border-slate-600 outline-none py-2 lg:pl-8 bg-blue-300 rounded-full text-xs font-semibold placeholder:text-primary placeholder:text-base"
+                placeholder="Type here..."
+              />
+              <IoSearchSharp className="absolute top-2 lg:top-2 left-9 lg:left-8 text-slate-700" />
+              <select className="w-[19%] absolute right-8 top-1 pb-1 align-middle text-sm  text-slate-800 bg-blue-300 border-l-2 border-blue-500 focus:text-gray-700 focus:bg-blue-400 focus:border-blue-400 focus:outline-blue-500">
+                <option value='id'>ID</option>
+                <option value='name'>Name</option>
+              </select>
+            </div>
+            <div className="w-[18%] bg-blue-300 rounded-2xl hover:shadow-lg">
+              <button className="w-full h-full text-center text-primary ">Search</button>
+            </div>
+             
           </div>
-          <div className="w-[15%] absolute left-80 top-1">
-            <select className="pl-2 text-sm w-full bg-slate-300 rounded-full text-slate-700 dark:placeholder-primary dark:focus:ring-blue-500">
-              <option value='id'>ID</option>
-              <option value='name'>Name</option>
-            </select>
-          </div>
-        </div>
 
 
 
 
-        <div className="justify-between pl-8 lg:pl-0 flex py-2 gap-3 items-center mr-4 w-full lg:justify-end">
-          <Clock />
-          <div className="flex flex-row gap-3">
+          <div className="justify-between pl-8 lg:pl-0 flex py-2 gap-3 items-center mr-4 w-full lg:justify-end">
+            <Clock />
+            <div className="flex flex-row gap-3">
 
-            <IoNotificationsSharp className="text-[18px] text-primary" />
-            <FaUser className=" text-primary" />
+              <IoNotificationsSharp className="text-[18px] text-primary" />
+              <FaUser className=" text-primary" />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-      
+
     </>
   );
 }
