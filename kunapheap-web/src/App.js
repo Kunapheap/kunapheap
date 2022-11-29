@@ -15,6 +15,7 @@ import NewArrival from "./pages/NewArrival";
 import ResetPassword from "./pages/ResetPassword";
 
 import api from './app/api/apiRoute'
+import EditProfile from "./pages/EditProfile";
 
 
 // "./components/Dashboard";
@@ -51,7 +52,7 @@ function App() {
       <Header />
       <Navbar />
       <div className="mt-14 md:pt-14 pt-8">
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/ourproduct" element={<OurPoduct />} />
         <Route path="/newarrival" element={<NewArrival />} />
@@ -59,8 +60,11 @@ function App() {
         <Route path="/login" element={<Login loading={loading} setLoading={setLoading} />} />
         <Route path="/signup" element={<SignUp loading={loading} setLoading={setLoading} />} />
         <Route path="/resetpassword" element={<ResetPassword />} />
-      </Routes>
+      </Routes> */}
+      
+      <EditProfile/>
       </div>
+
     </div>
   );
 }

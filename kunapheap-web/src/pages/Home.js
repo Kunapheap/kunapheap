@@ -2,6 +2,7 @@ import React from "react";
 
 import Footer from "../components/Footer";
 import LayoutModel from "../components/LayoutModel";
+import EditProfile from "./EditProfile";
 
 import model2 from '../assets/model2.png'
 import model3 from '../assets/model3.png'
@@ -9,14 +10,14 @@ import model4 from '../assets/model4.png'
 import model5 from '../assets/model5.png'
 function Home() {
 
-  const data=[
+  const data = [
     {
       image: model2,
       price: 12.43,
       color: [
-        {colorName: "green"},
-        {colorName: "red"},
-        {colorName: "yellow"},
+        { colorName: "green" },
+        { colorName: "red" },
+        { colorName: "yellow" },
       ],
       name: "product1"
     },
@@ -24,29 +25,29 @@ function Home() {
       image: model3,
       price: 12.432,
       color: [
-        {colorName: "green"},
-        {colorName: "black"},
-        {colorName: "yellow"},
+        { colorName: "green" },
+        { colorName: "black" },
+        { colorName: "yellow" },
       ],
       name: "product2"
     },
     {
       image: model4,
-      price: 12.433,color: [
-        {colorName: "blue"},
-        {colorName: "black"},
-        {colorName: "yellow"},
-        {colorName: "orange"},
-        {colorName: "green"},
+      price: 12.433, color: [
+        { colorName: "blue" },
+        { colorName: "black" },
+        { colorName: "yellow" },
+        { colorName: "orange" },
+        { colorName: "green" },
       ],
       name: "product3"
     },
     {
       image: model5,
-      price: 12.433,color: [
-        {colorName: "blue"},
-        {colorName: "black"},
-        {colorName: "yellow"},
+      price: 12.433, color: [
+        { colorName: "blue" },
+        { colorName: "black" },
+        { colorName: "yellow" },
       ],
       name: "product4"
     },
@@ -54,9 +55,9 @@ function Home() {
       image: model2,
       price: 12.43,
       color: [
-        {colorName: "green"},
-        {colorName: "red"},
-        {colorName: "yellow"},
+        { colorName: "green" },
+        { colorName: "red" },
+        { colorName: "yellow" },
       ],
       name: "product5"
     },
@@ -64,9 +65,9 @@ function Home() {
       image: model2,
       price: 12.43,
       color: [
-        {colorName: "green"},
-        {colorName: "red"},
-        {colorName: "yellow"},
+        { colorName: "green" },
+        { colorName: "red" },
+        { colorName: "yellow" },
       ],
       name: "product6"
     },
@@ -74,9 +75,9 @@ function Home() {
       image: model2,
       price: 12.43,
       color: [
-        {colorName: "green"},
-        {colorName: "red"},
-        {colorName: "yellow"},
+        { colorName: "green" },
+        { colorName: "red" },
+        { colorName: "yellow" },
       ],
       name: "product7"
     },
@@ -84,9 +85,9 @@ function Home() {
       image: model2,
       price: 12.43,
       color: [
-        {colorName: "green"},
-        {colorName: "red"},
-        {colorName: "yellow"},
+        { colorName: "green" },
+        { colorName: "red" },
+        { colorName: "yellow" },
       ],
       name: "product8"
     },
@@ -94,9 +95,9 @@ function Home() {
       image: model2,
       price: 12.43,
       color: [
-        {colorName: "green"},
-        {colorName: "red"},
-        {colorName: "yellow"},
+        { colorName: "green" },
+        { colorName: "red" },
+        { colorName: "yellow" },
       ],
       name: "product9"
     },
@@ -104,9 +105,9 @@ function Home() {
       image: model2,
       price: 12.43,
       color: [
-        {colorName: "green"},
-        {colorName: "red"},
-        {colorName: "yellow"},
+        { colorName: "green" },
+        { colorName: "red" },
+        { colorName: "yellow" },
       ],
       name: "product9"
     },
@@ -121,6 +122,7 @@ function Home() {
         }
         
       </div>
+      
       <Footer />
     </div>
   );
