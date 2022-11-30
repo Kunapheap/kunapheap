@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 import api from "../app/api/apiRoute";
 import Loading from "../components/Loading";
 
-function SignUp({ loading, setLoading }) {
+function SignUp() {
+  const [loading,setLoading] = useState(false)
   const [firstName, setfirstName] = useState("");
   const [lastName, setlastName] = useState("");
   const [username, setUsername] = useState("");
