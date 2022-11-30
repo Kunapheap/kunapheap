@@ -114,12 +114,20 @@ async function resetPassword(req, res) {
 }
 
 async function updateUserImages(req, res) {
-  const user = await updateUserImage(
-    req.file.originalname,
-    req.file.buffer,
-    req.params.user_username
-  );
-  return res.status(200).send(user);
+  try {
+    console.log(req.body);
+    console.log(req.file);
+    const user = await updateUserImage(
+      req.file.originalname,
+      req.file.buffer,
+      req.params.user_username
+    );
+    return res.status(200).send({
+      msg : 'success'
+    });
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 async function updateUser(req, res) {
@@ -139,7 +147,9 @@ async function updateUser(req, res) {
       username,
       password
     );
-    res.status(200).send(user);
+    return res.status(200).send({
+      msg : 'success'
+    });
   } catch (err) {
     console.log(err);
     return;

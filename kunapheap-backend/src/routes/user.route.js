@@ -22,7 +22,7 @@ router.post("/updateuser", auth, updateUser);
 router.post(
   "/updateUserImages/:user_username",
   auth,
-  upload.single(),
+  upload.single('image'),
   updateUserImages
 );
 
