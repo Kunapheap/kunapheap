@@ -16,11 +16,15 @@ function Header() {
   const [toggleCart, setToggleCart] = useState(false);
   const [toggleProfile, setToggleProfile] = useState(false);
 
+  const navigater = useNavigate()
+
   return (
     
     <div className="w-full h-16 border-2 flex justify-between px-2 md:px-8 bg-white z-20 fixed top-0">
-      <div className="flex items-center">
-        <img src={logo} alt="logo" className="w-12 md:w-16 App-logo" />
+      <div onClick={() => navigater('/')}
+       className="flex items-center">
+        <img 
+         src={logo} alt="logo" className="w-12 md:w-16 App-logo cursor-pointer" />
         <h1 className="text-2xl md:text-4xl font-semibold">Kunapheap Store</h1>
       </div>
       <div className="flex items-center gap-4 ">
@@ -97,14 +101,15 @@ function Profile({toggleProfile, setToggleProfile,setToggleCart}) {
         
         {toggleProfile && (
           <div className="absolute w-48 md:w-60 h-64 md:h-72 border-2 bg-white right-0 top-8 rounded-md px-3 py-1 shadow-md overflow-hidden">
-            <p className="text-secondary text-right cursor-pointer underline hover:text-primary">
+            <p onClick={() => navigater('/editprofile')}
+            className="text-secondary text-right cursor-pointer underline hover:text-primary">
               Edit
             </p>
             <div className="flex">
               <img
                 className="w-10 md:w-14 border-1 rounded-full"
                 alt="pro"
-                src="https://kunapheap.s3.ap-southeast-1.amazonaws.com/avatar.png"
+                src={user.user_image_link}
               />
               <div className="mx-2">
                 <p className="font-bold -mb-1 md:text-xl ">{user.user_username}</p>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 import Login from "./pages/Login";
@@ -6,7 +6,7 @@ import SignUp from "./pages/SignUp";
 
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import {Routes,Route} from 'react-router-dom'
+import { Routes, Route } from "react-router-dom";
 import { setUser } from "./app/slice/userSlice";
 import Home from "./pages/Home";
 import OurPoduct from "./pages/OurPoduct";
@@ -14,13 +14,11 @@ import AboutUs from "./pages/AboutUs";
 import NewArrival from "./pages/NewArrival";
 import ResetPassword from "./pages/ResetPassword";
 
-import api from './app/api/apiRoute'
+import api from "./app/api/apiRoute";
 import EditProfile from "./pages/EditProfile";
 
-
-// "./components/Dashboard";
 function App() {
-  const [loading,setLoading] = useState(false)
+  
   const dispatch = useDispatch();
 
   const getUserData = async () => {
@@ -36,35 +34,37 @@ function App() {
   };
 
   useEffect(() => {
-    if(localStorage.length !== 0){
+    if (localStorage.length !== 0) {
       getUserData();
     } else {
-      console.log("Hello")
-    } 
+      console.log("Hello");
+    }
   });
 
-  useEffect(()=> {
 
-  },[loading])
 
   return (
     <div className="bg-bgColor w-full ">
       <Header />
       <Navbar />
-      <div className="mt-14 md:pt-14 pt-8">
-      {/* <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/ourproduct" element={<OurPoduct />} />
-        <Route path="/newarrival" element={<NewArrival />} />
-        <Route path="/aboutus" element={<AboutUs />} />
-        <Route path="/login" element={<Login loading={loading} setLoading={setLoading} />} />
-        <Route path="/signup" element={<SignUp loading={loading} setLoading={setLoading} />} />
-        <Route path="/resetpassword" element={<ResetPassword />} />
-      </Routes> */}
-      
-      <EditProfile/>
+      <div className="mt-14 sm:pt-14 pt-8">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/ourproduct" element={<OurPoduct />} />
+          <Route path="/newarrival" element={<NewArrival />} />
+          <Route path="/aboutus" element={<AboutUs />} />
+          <Route
+            path="/login"
+            element={<Login />}
+          />
+          <Route
+            path="/signup"
+            element={<SignUp  />}
+          />
+          <Route path="/resetpassword" element={<ResetPassword />} />
+          <Route path="/editprofile" element={<EditProfile />} />
+        </Routes>
       </div>
-
     </div>
   );
 }
