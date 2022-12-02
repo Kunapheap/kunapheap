@@ -9,6 +9,7 @@ import Loading from "../components/Loading";
 
 function EditProfile() {
   const user = useSelector((state) => state.user.value);
+  const [alert,setAlert] = useState('')
   const [current_user, setCurrentUser] = useState(user);
   const [previewimage, setpreviewImage] = useState([]);
   const [imageURLs, setImageURLs] = useState([]);
@@ -64,11 +65,14 @@ function EditProfile() {
       );
       console.log(response.data);
       if (response.status === 200) {
-        alert("success");
+        setAlert('success')
         navigater("/");
+      } else {
+        setAlert('wrong password')
       }
     } catch (err) {
       console.log(err);
+      setAlert(err.response.data.msg)
     }
     setLoading(false);
   };
@@ -82,7 +86,7 @@ function EditProfile() {
 
   useEffect(() => {
     setCurrentUser(user);
-  },[user]);
+  },[user,current_password]);
 
   return (
     <div>
@@ -94,7 +98,7 @@ function EditProfile() {
         <div className="w-full flex justify-center pt-3">
           <div className="relative">
             <input
-              className="w-24 h-20 absolute top-0 opacity-0 z-10"
+              className="w-24 h-24 absolute top-0 opacity-0 z-10"
               type="file"
               onChange={(e) => {
                 setImage(e.target.files[0]);
@@ -105,7 +109,7 @@ function EditProfile() {
             {imageURLs < 1 ? (
               <img
                 src={user.user_image_link}
-                className="w-24 rounded-full"
+                className="w-24 h-24 rounded-full"
                 alt="profile"
               />
             ) : (
@@ -178,6 +182,7 @@ function EditProfile() {
               className="w-full h-10 pl-1 border-2 border-primary rounded-md"
             />
           </div>
+          <h2 className="w-full font-bold text-red-400 text-xl">{alert}</h2>
 
           <div className="w-full flex justify-center text-lg gap-4 mt-6">
             <button
