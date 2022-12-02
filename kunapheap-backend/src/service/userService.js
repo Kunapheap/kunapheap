@@ -87,7 +87,7 @@ async function updateUserDetail(
       return user;
     } else {
       console.log(user);
-      return;
+      return user;
     }
   } catch (err) {
     console.log(err);

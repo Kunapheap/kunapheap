@@ -10,9 +10,7 @@ const {
   updateUserImages,
 } = require("../controller/userController");
 
-const multer = require("multer");
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
+const upload = require('../middleware/multer')
 
 router.post("/signup", signUpUser);
 router.post("/login", logInUser);

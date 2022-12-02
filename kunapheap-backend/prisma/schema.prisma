@@ -10,9 +10,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 model Role {
   role_id String @id @default(uuid()) 
   role_role String
@@ -38,7 +35,7 @@ model User {
 
 model Category {
   category_id String @id @default(uuid())
-  category_name String
+  category_name String @unique
   product Product[]
 }
 

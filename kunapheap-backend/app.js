@@ -17,6 +17,7 @@ app.get('/', async (req, res, next) => {
 
 app.use('/admin', require('./src/routes/api.route'));
 app.use('/user',require('./src/routes/user.route'));
+app.use('/category',require('./src/routes/category.route'))
 
 app.use((req, res, next) => {
   next(createError.NotFound());
