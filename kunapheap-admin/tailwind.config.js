@@ -15,8 +15,13 @@ module.exports = {
       'slate' : colors.slate,
       'white' : colors.white,
       'red' : colors.red,
+      'green': colors.green,
+      'gray': colors.gray
     },
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar')({ nocompatible: true }),
+  ],
+  
 }
