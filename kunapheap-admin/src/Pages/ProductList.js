@@ -156,7 +156,7 @@ function ProductList() {
               {
                 data.map((item, index) => ((
                   <tr key={index} className="text-xs lg:text-lg text-center border-b-2 border-slate-200">
-                    <td className="w-[10%] py-2">{item.id}</td>
+                    <td className="w-[10%] py-5">{item.id}</td>
                     <td className="w-[10%]">{item.name}</td>
                     <td className="w-[10%]">{item.color}</td>
                     <td className="w-[10%]">{item.size}</td>
@@ -183,7 +183,6 @@ function ProductList() {
               }
             </tbody>
           </table>
-
         </div>
       </div>
     </div >
