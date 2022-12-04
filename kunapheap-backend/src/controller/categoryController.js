@@ -3,7 +3,6 @@ const {getAllCategory,getACategory} = require('../service/categoryService')
 
 async function getAllCategories (req,res) {
     const all_categories = await getAllCategory()
-
     res.status(200).send(all_categories)
 }
 

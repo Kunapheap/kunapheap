@@ -9,8 +9,11 @@ CREATE TABLE "Role" (
 -- CreateTable
 CREATE TABLE "User" (
     "user_id" TEXT NOT NULL,
+    "user_firstname" TEXT NOT NULL,
+    "user_lastname" TEXT NOT NULL,
     "user_username" TEXT NOT NULL,
     "user_password" TEXT NOT NULL,
+    "user_gender" TEXT NOT NULL,
     "user_phone_number" TEXT NOT NULL,
     "user_image_link" TEXT NOT NULL,
     "user_email" TEXT NOT NULL,
@@ -77,7 +80,6 @@ CREATE TABLE "Item" (
     "item_last_modify_date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "color_id" TEXT NOT NULL,
     "size_id" TEXT NOT NULL,
-    "cart_id" TEXT NOT NULL,
 
     CONSTRAINT "Item_pkey" PRIMARY KEY ("item_id")
 );
@@ -88,6 +90,14 @@ CREATE TABLE "OrderOnItem" (
     "item_id" TEXT NOT NULL,
 
     CONSTRAINT "OrderOnItem_pkey" PRIMARY KEY ("order_id","item_id")
+);
+
+-- CreateTable
+CREATE TABLE "CartOnItem" (
+    "cart_id" TEXT NOT NULL,
+    "item_id" TEXT NOT NULL,
+
+    CONSTRAINT "CartOnItem_pkey" PRIMARY KEY ("cart_id","item_id")
 );
 
 -- CreateTable
@@ -118,6 +128,9 @@ CREATE TABLE "ColorOnSize" (
 CREATE UNIQUE INDEX "User_user_username_key" ON "User"("user_username");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Category_category_name_key" ON "Category"("category_name");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Cart_user_id_key" ON "Cart"("user_id");
 
 -- AddForeignKey
@@ -142,13 +155,16 @@ ALTER TABLE "Item" ADD CONSTRAINT "Item_product_id_fkey" FOREIGN KEY ("product_i
 ALTER TABLE "Item" ADD CONSTRAINT "Item_color_id_size_id_fkey" FOREIGN KEY ("color_id", "size_id") REFERENCES "ColorOnSize"("color_id", "size_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Item" ADD CONSTRAINT "Item_cart_id_fkey" FOREIGN KEY ("cart_id") REFERENCES "Cart"("cart_id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
 ALTER TABLE "OrderOnItem" ADD CONSTRAINT "OrderOnItem_order_id_fkey" FOREIGN KEY ("order_id") REFERENCES "Order"("order_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "OrderOnItem" ADD CONSTRAINT "OrderOnItem_item_id_fkey" FOREIGN KEY ("item_id") REFERENCES "Item"("item_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CartOnItem" ADD CONSTRAINT "CartOnItem_cart_id_fkey" FOREIGN KEY ("cart_id") REFERENCES "Cart"("cart_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CartOnItem" ADD CONSTRAINT "CartOnItem_item_id_fkey" FOREIGN KEY ("item_id") REFERENCES "Item"("item_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "ColorOnSize" ADD CONSTRAINT "ColorOnSize_color_id_fkey" FOREIGN KEY ("color_id") REFERENCES "Color"("color_id") ON DELETE RESTRICT ON UPDATE CASCADE;
