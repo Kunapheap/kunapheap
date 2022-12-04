@@ -8,7 +8,6 @@ import logo from "../assets/logo.svg";
 import "../style/App.css";
 
 import { setUser } from "../app/slice/userSlice";
-
 import {useNavigate} from 'react-router-dom'
 
 function Header() {
@@ -20,7 +19,7 @@ function Header() {
 
   return (
     
-    <div className="w-full h-16 border-2 flex justify-between px-2 md:px-8 bg-white z-20 fixed top-0">
+    <div className="w-full h-16 border-2 flex justify-between px-2 md:px-8 bg-white z-30 fixed top-0 ">
       <div onClick={() => navigater('/')}
        className="flex items-center">
         <img 
@@ -48,8 +47,8 @@ function Cart({toggleCart,setToggleCart,setToggleProfile}) {
     <>
       <div className="relative">
         <FaShoppingCart className="md:text-2xl" onClick={handleToggle} />
-        {toggleCart && (
-            
+
+        {toggleCart && (    
           <div className="absolute bg-white top-7 right-0 border-2 pl-1 w-56 sm:w-64 h-80
            text-sm font-semibold overflow-y-auto overflow-x-hidden
            scrollbar-thin scrollbar-thumb-primary scrollbar-thumb-rounded-full scrollbar-track-gray-100 ">
@@ -96,7 +95,7 @@ function Profile({toggleProfile, setToggleProfile,setToggleCart}) {
       <div className="relative">
         {
           user.user_image_link === undefined ? <FaUser  className="md:text-2xl" onClick={() => navigater('/login') } /> 
-          : <img src={user.user_image_link} onClick={handleToggle} alt="profile" className="w-8 border-2 border-primary rounded-full"  />
+          : <img src={user.user_image_link} onClick={handleToggle} alt="profile" className="w-8  border-2 border-primary rounded-full"  />
         }
         
         {toggleProfile && (
@@ -107,7 +106,7 @@ function Profile({toggleProfile, setToggleProfile,setToggleCart}) {
             </p>
             <div className="flex">
               <img
-                className="w-10 md:w-14 border-1 rounded-full"
+                className="w-10 md:w-14 border-1 rounded-full object-cover"
                 alt="pro"
                 src={user.user_image_link}
               />

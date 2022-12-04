@@ -1,5 +1,6 @@
 const { generateToken } = require("../middleware/jwtGenerate");
 const { getRole } = require("../service/roleService");
+const cartService = require('../service/cartService')
 
 const {
   getUsername,
@@ -147,10 +148,15 @@ async function updateUser(req, res) {
       username,
       password
     );
+    
+    if(user.user_password !== password) {
+      return res.status(400).send({msg : "wrong password !"})
+    }
     return res.status(200).send({
       msg : 'success'
     });
   } catch (err) {
+    res.status(400).send({msg : "wrong password"})
     console.log(err);
     return;
   }

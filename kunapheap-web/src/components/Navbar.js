@@ -10,7 +10,7 @@ function Navbar() {
     <div className="sm:-z-20 z-10 bg-yellow-50 w-full">   
       {toggleNav ? (
         <AiOutlineClose
-          className={`text-4xl  fixed z-20 sm:hidden`}
+          className={`text-4xl  fixed z-30 sm:hidden`}
           onClick={() => setToggleNav(!toggleNav)}
         />
       ) : (
@@ -21,7 +21,7 @@ function Navbar() {
       )}
 
       <div
-        className={` sm:bg-bgColor sm:text-2xl text-lg
+        className={` sm:bg-bgColor sm:text-2xl text-lg z-20
          w-full sm:w-full justify-between px-1 sm:px-4 md:px-16
           font-semibold h-screen fixed sm:h-12 transition-all ease-in-out duration-1000
            ${
