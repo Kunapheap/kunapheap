@@ -19,7 +19,7 @@ function Header() {
 
   return (
     
-    <div className="w-full h-16 border-2 flex justify-between px-2 md:px-8 bg-white z-20 fixed top-0">
+    <div className="w-full h-16 border-2 flex justify-between px-2 md:px-8 bg-white z-30 fixed top-0 ">
       <div onClick={() => navigater('/')}
        className="flex items-center">
         <img 

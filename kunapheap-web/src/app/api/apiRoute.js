@@ -8,7 +8,10 @@ const  api = {
     'get_user_url' : url + '/user/me/',
     'reset_user_pass_url' : url + '/user/resetpassword',
     'uplaod_user_img' : url + '/user/updateUserImages/',
-    'update_user' : url + '/user/updateUser'
+    'update_user' : url + '/user/updateUser',
+    'getAllCategory' : url + '/category/allcategory',
+    // 'getCategory' : url + '/category/',
+    'getAllProdct' : url + '/product/getAllProduct'
 }
 
 export default api
