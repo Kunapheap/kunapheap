@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 function SeeMore() {
 
   const navigate = useNavigate()
-  
+
 
   const data = [
     {
@@ -46,29 +46,29 @@ function SeeMore() {
             </div>
             {
               data.map((item, index) => (
-                <div key={index} className="w-full">
+                <div key={index} className="w-[100%]">
                   {/* Input  */}
-                  <div className="w-full flex flex-col lg:flex-row gap-x-4 pl-4 pr-4 mt-6">
+                  <div className="w-full flex flex-col lg:flex-row gap-x-4 px-4 mt-6">
                     <div className="w-full">
-                      <label className="text-lg font-medium text-primary w-full">
+                      <label className="text-sm md:text-base font-medium text-gray-600">
                         Date in stock
                       </label>
                       <input
-                        className="w-full py-2 pl-1 border-2 border-gray-300 rounded-md"
+                        className="w-full h-8 md:h-10 py-2 pl-1 border-2 border-gray-300 rounded-md"
                         placeholder={item.dateInStock}
                         disabled
                       />
                     </div>
 
                     <div className="w-full mt-3 lg:mt-0">
-                      <label className="text-lg font-medium text-primary">
+                      <label className="text-sm md:text-base font-medium text-gray-600">
                         Date out stock
-                      </label> 
+                      </label>
                       <input
-                        className="w-full py-2 pl-1 border-2 border-gray-300 rounded-md"
+                        className="w-full h-8 md:h-10 py-2 pl-1 border-2 border-gray-300 rounded-md"
                         placeholder={`${item.amountProduct >= 1
-                            ? "null"
-                            : `${item.dateOutStock}`
+                          ? "null"
+                          : `${item.dateOutStock}`
                           }`}
                         disabled
                       />
@@ -77,22 +77,22 @@ function SeeMore() {
 
                   <div className="w-full flex flex-col lg:flex-row gap-x-4 pl-4 pr-4 mt-3 lg:mt-6">
                     <div className="w-full">
-                      <label className="text-lg font-medium text-primary">
+                      <label className="text-sm md:text-base font-medium text-gray-600">
                         Product Name
                       </label>
                       <input
-                        className="w-full py-2 pl-1 border-2 border-gray-300 rounded-md"
+                        className="w-full h-8 md:h-10 py-2 pl-1 border-2 border-gray-300 rounded-md"
                         placeholder={item.nameProduct}
                         disabled
                       />
                     </div>
 
                     <div className="w-full mt-3 lg:mt-0">
-                      <label className="text-lg font-medium text-primary">
+                      <label className="text-sm md:text-base font-medium text-gray-600">
                         Amount of products
                       </label>
                       <input
-                        className="w-full py-2 pl-1  border-2 border-gray-300 rounded-md"
+                        className="w-full h-8 md:h-10 py-2 pl-1 border-2 border-gray-300 rounded-md"
                         placeholder={item.amountProduct}
                         disabled
                       />
@@ -101,53 +101,53 @@ function SeeMore() {
 
                   <div className="w-full flex flex-col lg:flex-row gap-x-4 pl-4 pr-4 mt-3 lg:mt-6">
                     <div className="w-full">
-                      <label className="text-lg font-medium text-primary">
+                      <label className="text-sm md:text-base font-medium text-gray-600">
                         Size
                       </label>
                       <input
-                        className="w-full py-2 pl-1  border-2 border-gray-300 rounded-md"
+                        className="w-full h-8 md:h-10 py-2 pl-1 border-2 border-gray-300 rounded-md"
                         placeholder={item.sizeProduct}
                         disabled
                       />
                     </div>
                     <div className="w-full mt-3 lg:mt-0">
-                      <label className="text-lg font-medium text-primary">
+                      <label className="text-sm md:text-base font-medium text-gray-600">
                         Color
                       </label>
                       <div className="flex">
-                        <div className="w-12 h-12 rounded-md"
+                        <div className="w-10 h-10 md:w-11 md:h-11 rounded-md"
                           style={{ backgroundColor: item.colorProductCode }}></div>
-                        <p className="text-base font-semibold pl-2 py-3">{item.colorProduct}</p>
+                        <p className="text-xs md:text-base font-semibold pl-2 py-3">{item.colorProduct}</p>
                       </div>
                     </div>
                   </div>
 
-                  <div className="w-full pl-4 pr-4 mt-3 lg:mt-6">
+                  <div className="w-full pl-4 pr-4 mt-3 lg:mt-6 ">
                     <div className="w-full flex flex-col lg:flex-row gap-x-4">
                       <div className="w-full">
-                        <label className="text-lg font-medium text-primary">
+                        <label className="text-sm md:text-base font-medium text-gray-600">
                           Product Price
                         </label>
                         <input
-                          className="w-full py-2 pl-1  border-2 border-gray-300 rounded-md"
+                          className="w-full h-8 md:h-10 py-2 pl-1 border-2 border-gray-300 rounded-md"
                           placeholder={item.priceProduct}
                           disabled
                         />
                       </div>
                       <div className="w-full mt-3 lg:mt-0">
-                        <label className="text-lg font-medium text-primary">
+                        <label className="text-sm md:text-base font-medium text-gray-600">
                           Discount
                         </label>
                         <input
-                          className="w-full py-2 pl-1  border-2 border-gray-300 rounded-md"
+                          className="w-full h-8 md:h-10 py-2 pl-1 border-2 border-gray-300 rounded-md"
                           placeholder={item.discount}
                           disabled
                         />
                       </div>
                     </div>
-                    <div>
-                      <button onClick={()=> navigate(-1)}
-                       className="bg-gray-400 font-bold text-white rounded-lg px-3 py-1 float-right mt-3">
+                    <div className="w-full h-11 mt-2 md:mt-4">
+                      <button onClick={() => navigate(-1)}
+                        className="bg-gray-400 font-bold text-white rounded-lg text-sm px-2 py-1 float-right">
                         Cancel
                       </button>
                     </div>

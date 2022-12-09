@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import AddProduct from "./Pages/AddProduct";
 import Order from "./Pages/Order";
 import ProductList from "./Pages/ProductList";
+import SeeMoreOrder from "./Pages/SeeMoreOrder";
 
 function App() {
 
@@ -47,7 +48,8 @@ function App() {
             <Route path="/order" element={<Order />} />
             <Route path="/productlist" element={<ProductList />} />
             <Route path="/SeeMore" element={<SeeMore/>}/>
-          </Routes>
+            <Route path="/SeeMoreOrder" element={<SeeMoreOrder />}/>
+          </Routes> 
 
           
         </div>
