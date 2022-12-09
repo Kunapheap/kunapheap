@@ -1,10 +1,9 @@
 import {createSlice} from '@reduxjs/toolkit'
-import { Action } from '@remix-run/router'
 
 const productSlide = createSlice ({
     name : 'product',
     initialState : {
-        value : []
+        value : [],
     },
     reducers : {
         setProduct : (state,action) => {

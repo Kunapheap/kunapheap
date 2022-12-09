@@ -1,31 +1,30 @@
-const {PrismaClient} = require('@prisma/client')
-const prisma = new PrismaClient()
-
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
 
 module.exports = colorOnSizeService = {
-    
-    //not yet used
-    getColor : async (product_id) => {
-        const colors = await prisma.colorOnSize.findMany({
-            include : {
-                item : {
-                    where : {
-                        product_id : product_id
-                    }
-                }
-            }
-        })
-
-        const myColor = [...colors]
-
-        myColor.filter((color) => {
-            console.log(color.item[0] !== undefined)
-            if(color.item[0] !== undefined){
-                return color
-            }
-            
-        })
-        console.log(myColor)
-        return colors
-    }
-}
+  //not yet used
+  getColor: async (color) => {
+    const colorWithSize = await prisma.colorOnSize.findMany({
+      where: {
+        color_id: color,
+      },
+    });
+    return colorWithSize;
+  },
+  getColorName : async (color_id) => {
+    const color = await prisma.color.findUnique({
+      where : {
+        color_id : color_id
+      }
+    })
+    return color.color_name;
+  },
+  getSizeName : async (size_id) => {
+    const size = await prisma.size.findUnique({
+      where : {
+        size_id : size_id
+      }
+    })
+    return size.size_name;
+  }
+};

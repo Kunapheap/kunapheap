@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from "react";
 import LayoutModel from "./LayoutModel";
-import {FiLoader} from 'react-icons/fi'
+import { FiLoader } from "react-icons/fi";
 
-import '../style/App.css'
+import "../style/App.css";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { setProduct } from "../app/slice/productSlide";
 import api from "../app/api/apiRoute";
+import { useNavigate } from "react-router-dom";
+import { setViewProduct } from "../app/slice/viewProductSlide";
 
 function NewArrivalLayout() {
-
   const [laoding, setLoading] = useState(false);
 
   const products = useSelector((state) => state.product.value);
   const dispatch = useDispatch();
+  const navigator = useNavigate();
 
   const getProduct = async () => {
     setLoading(true);
@@ -27,13 +29,18 @@ function NewArrivalLayout() {
     if (products.length === 0) {
       getProduct();
     }
-  },);
+  });
+
+  const handleViewProduct = (product_id) => {
+    dispatch(setViewProduct(product_id))
+    navigator('/viewproduct')
+  }
 
   return (
     <div>
       {laoding && (
         <div className="w-full">
-            <FiLoader  class="loading-logo text-[100px] text-slate-300 h-15 w-15 mx-auto"  />
+          <FiLoader className="loading-logo text-[100px] text-slate-300 h-15 w-15 mx-auto" />
         </div>
       )}
       {/* product Grid */}
@@ -43,7 +50,13 @@ function NewArrivalLayout() {
       sm:grid-cols-3 md:gap-6 lg:grid-cols-4 xl:grid-cols-5 lg:gap-x-6 lg:px-16 lg:gap-y-8"
       >
         {products.map((product) => (
-          <LayoutModel product={product} key={product.product_id} />
+          <div 
+          key={product.product_id}
+          onClick={() => handleViewProduct(product.product_id)}>
+            <LayoutModel
+              product={product}
+            />
+          </div>
         ))}
       </div>
     </div>
