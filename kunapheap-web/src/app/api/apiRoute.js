@@ -1,6 +1,6 @@
 const url = 'http://localhost:8080'
 // const url = 'http://192.168.8.137:8080'
-// const url = 'http://192.168.141.160:8080'
+// const url = 'http://192.168.127.160:8080'
 // const url = 'http://kunapheap.com:8080'
 const  api = {
     'user_login_url' : url + '/user/login',
@@ -10,7 +10,7 @@ const  api = {
     'uplaod_user_img' : url + '/user/updateUserImages/',
     'update_user' : url + '/user/updateUser',
     'getAllCategory' : url + '/category/allcategory',
-    // 'getCategory' : url + '/category/',
+    'getOneProduct' : url + '/product/product_id/',
     'getAllProdct' : url + '/product/getAllProduct'
 }
 

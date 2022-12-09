@@ -16,6 +16,7 @@ import ResetPassword from "./pages/ResetPassword";
 
 import api from "./app/api/apiRoute";
 import EditProfile from "./pages/EditProfile";
+import ViewProduct from "./pages/ViewProduct";
 
 function App() {
   
@@ -61,6 +62,7 @@ function App() {
             path="/signup"
             element={<SignUp  />}
           />
+          <Route path="/viewproduct" element={<ViewProduct />} />
           <Route path="/resetpassword" element={<ResetPassword />} />
           <Route path="/editprofile" element={<EditProfile />} />
         </Routes>
