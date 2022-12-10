@@ -70,9 +70,13 @@ function ViewProduct() {
                               transition ease-in-out focus:border-secondary outline-none my-2"
             >
               {
-                product.colorOnSize[colorIndex].size.map((size,index)=>(
-                  <option value={size} key={index}>{size}</option>
-                ))
+                product.colorOnSize[colorIndex].size.map((size,index)=>{
+                  if(size !== null) {
+                    return (<option value={size} key={index}>{size}</option>)
+                  }
+                  
+                    
+                })
               }
             </select>
             <h2 className="font-semibold text-xl">Quantity</h2>

@@ -22,9 +22,10 @@ module.exports = colorOnSizeService = {
   getSizeName : async (size_id) => {
     const size = await prisma.size.findUnique({
       where : {
-        size_id : size_id
+        size_id : size_id,
       }
     })
+    // return size;
     return size.size_name;
   }
 };
