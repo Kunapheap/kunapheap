@@ -20,8 +20,8 @@ function Banner() {
   };
 
   const data = [
-    'https://i.picsum.photos/id/428/1000/700.jpg?hmac=V2UsYL6D0t4h8ore2a3hwCT5mocNGYTPSniF420rjUQ',
-    'https://i.picsum.photos/id/565/1000/700.jpg?hmac=8pWEsjWfv_By4aWyJ4R699jUhoOGHqOhYKm-Hq2IIgo',
+    'https://img.freepik.com/free-photo/close-up-flannel-shirt-detail_23-2149575311.jpg?w=1380&t=st=1670827394~exp=1670827994~hmac=addb59cd75774585c41bafb9493d55a4957eb0ecc2b377ef6210aec0354e9b3b',
+    'https://img.freepik.com/free-photo/elegant-asian-woman-white-dress-looking-camera-confident-chinese-woman-hat-holding-leather-jacket_197531-14542.jpg?w=1380&t=st=1670827444~exp=1670828044~hmac=84325fea84c0c9d0dd9d23af6934e6932ef5c42bdebd94052c1ae0c1fca7cec1',
     banner1
   ];
 

@@ -57,6 +57,7 @@ module.exports = productService = {
       const colorWithSize = await colorOnSizeService.getColor(color);
       const size = [];
       colorWithSize.map(async (item,index) => {
+        
         const temp_size = await colorOnSizeService.getSizeName(item.size_id); 
         var test ;
           filteredSize.map(async (size,index) => {
