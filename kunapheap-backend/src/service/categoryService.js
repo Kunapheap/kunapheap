@@ -7,7 +7,12 @@ async function getAllCategory() {
         include : {
             product : {
                 include : {
-                    image : true
+                    item : {
+                        take : 1,
+                        include : {
+                            image : true
+                        }
+                    }
                 }
             }
         }
@@ -40,5 +45,14 @@ async function getACategory(category_name) {
     
 }
 
+async function getAllCategoryName () {
+    console.log('work')
+    const categories = await prisma.category.findMany({
+        take : 5
+    })
+    console.log(categories)
+    return categories;
+}
 
-module.exports = {getAllCategory,getACategory}
+
+module.exports = {getAllCategory,getACategory,getAllCategoryName}

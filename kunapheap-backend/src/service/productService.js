@@ -7,7 +7,6 @@ module.exports = productService = {
     const products = await prisma.product.findMany({
       take: 10,
       include: {
-        image: true,
         item: {
           include: {
             ColorOnSide: {
@@ -16,6 +15,7 @@ module.exports = productService = {
                 size: true,
               },
             },
+            image : true
           },
         },
       },
@@ -29,8 +29,11 @@ module.exports = productService = {
         product_id: product_id,
       },
       include: {
-        item: true,
-        image : true
+        item: {
+          include : {
+            image : true
+          }
+        },
       },
     });
 

@@ -46,7 +46,7 @@ function ViewProduct() {
       {product !== undefined && (
         <div className="flex flex-col sm:flex-row py-5">
           <div className="w-full sm:w-[50%] h-[50%] flex justify-center ">
-            <ViewProductLayout image={product.product.image[0].image_link} />
+            <ViewProductLayout image={product.product.item[0].image[0].image_link} />
           </div>
           <div className="w-full flex flex-col px-5">
             <p className="font-semibold text-xl">{product.product.product_name}</p>

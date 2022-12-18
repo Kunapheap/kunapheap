@@ -47,7 +47,6 @@ model Product {
   category Category @relation(references: [category_id],fields: [category_id])
   category_id String
   item Item[]
-  image Image[]
 }
 
 model Cart {
@@ -72,8 +71,8 @@ model Order {
 model Image {
   image_id String @id @default(uuid())
   image_link String 
-  product Product @relation(references: [product_id],fields: [product_id])
-  product_id String 
+  item Item @relation(references: [item_id],fields: [item_id])
+  item_id String 
 }
 
 model Item {
@@ -88,6 +87,7 @@ model Item {
   size_id String
   orderOnItem OrderOnItem[]
   cart Cart[]
+  image Image[]
 }
 
 model OrderOnItem {

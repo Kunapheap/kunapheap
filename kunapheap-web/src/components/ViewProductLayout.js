@@ -1,11 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import Slider from "react-slick";
-import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { setCategory } from "../app/slice/categorySlice";
-import api from "../app/api/apiRoute";
-import model3 from "../assets/model3.png";
 
 function ViewProductLayout({image}) {
 
@@ -69,7 +64,7 @@ function PrevArrow(props) {
       }}
       onClick={onClick}
     />
-  );
+  ); 
 }
 
 export default ViewProductLayout;

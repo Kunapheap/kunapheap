@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { log_in_url } from '../app/api/apiRoute'
+import api from '../app/api/apiRoute'
 import { setUser } from '../app/user/userSlice'
 
 function LoginAdmin() {
@@ -27,7 +27,7 @@ function LoginAdmin() {
     }
 
     try {
-      const res = await axios.post(log_in_url, {
+      const res = await axios.post(api.log_in_url, {
         "user_username": username,
         "user_password": password
       })

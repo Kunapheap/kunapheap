@@ -1,76 +1,20 @@
+import axios from "axios";
 import produce from "immer";
 import React, { useEffect, useState } from "react";
 import { FaTrash, FaRegEdit } from 'react-icons/fa'
 import { GrFormDown } from 'react-icons/gr'
 import { useNavigate } from "react-router-dom";
+import api from "../app/api/apiRoute";
 function ProductList() {
 
   const navigate = useNavigate()
   const [category, setCategory] = useState(false)
-  // const data = [
-  //   {
-  //     id: 1001,
-  //     name: "product1",
-  //     color: "Green",
-  //     size: "M",
-  //     price: "$123.12",
-  //     amount: 12,
-  //     stock_status: "Available",
-  //   },
-  //   {
-  //     id: 1002,
-  //     name: "product2",
-  //     color: "Red",
-  //     size: "S",
-  //     price: "$23.12",
-  //     amount: 24,
-  //     stock_status: "Available",
-  //   },
-  //   {
-  //     id: 1003,
-  //     name: "product3",
-  //     color: "Black",
-  //     size: "L",
-  //     price: "$33.12",
-  //     amount: 2,
-  //     stock_status: "Low stock",
-  //   },
-  //   {
-  //     id: 1004,
-  //     name: "product4",
-  //     color: "Pink",
-  //     size: "XL",
-  //     price: "$43.12",
-  //     amount: 0,
-  //     stock_status: "Out stock",
-  //   },
-  //   {
-  //     id: 1005,
-  //     name: "product4",
-  //     color: "Pink",
-  //     size: "XL",
-  //     price: "$43.12",
-  //     amount: 1,
-  //     stock_status: "Out stock",
-  //   },
-  //   {
-  //     id: 1004,
-  //     name: "product4",
-  //     color: "Pink",
-  //     size: "XL",
-  //     price: "$43.12",
-  //     amount: 12,
-  //     stock_status: "Out stock",
-  //   }
-  // ]
+  const [items,setItems] = useState([])
 
   const data = [
     1, 2, 3, 4, 5, 6, 7, 8
     , 9, 10, 11, 12, 13,
     14, 15, 16, 17, 18,
-    19, 20, 21, 22, 23, 24,
-    25, 26, 27, 28, 29, 30,
-    31, 32, 33, 34, 35, 36
   ]
 
   function handleStockStatus(amount) {
@@ -83,11 +27,15 @@ function ProductList() {
     }
   }
 
-  useEffect(
-    () => {
-      console.log(handleStockStatus(0))
-    }, []
-  )
+  const getAllItem = async () => {
+    const res = await axios.get(api.get_all_item);
+    console.log(res.data)
+    setItems(res.data)
+  }
+
+  useEffect(() => {
+    getAllItem()
+  },[])
 
   return (
     <div >
@@ -145,10 +93,10 @@ function ProductList() {
             <thead className="sticky top-0 bg-bgColor">
               <tr className="text-sm lg:text-lg text-slate-700 ">
                 <th className="w-[10%]">ID</th>
-                <th className="w-[10%]">Name</th>
-                <th className="w-[10%]">Color</th>
-                <th className="w-[10%]">Size</th>
-                <th className="hidden md:table-cell w-[10%]">Price</th>
+                <th className="w-[25%] text-left">Name</th>
+                <th className="w-[5%]">Color</th>
+                <th className="w-[5%]">Size</th>
+                <th className="hidden md:table-cell w-[5%]">Price</th>
                 <th className="w-[10%]">Amount</th>
                 <th className="hidden md:table-cell lg:w-[16%] w-[10%]">Stock status</th>
                 <th className="w-[10%]">Action</th>
@@ -157,21 +105,21 @@ function ProductList() {
             </thead>
             <tbody>
               {
-                data.map((item, index) => ((
-                  <tr key={index} className="text-xs lg:text-lg text-center border-b-2 border-slate-200">
-                    <td className="w-[10%] py-5">{item.id}</td>
-                    <td className="w-[10%]">{item.name}</td>
-                    <td className="w-[10%]">{item.color}</td>
-                    <td className="w-[10%]">{item.size}</td>
-                    <td className="hidden md:table-cell w-[10%]">{item.price}</td>
-                    <td className="w-[10%]">{item.amount}</td>
+                items.map((item, index) => ((
+                  <tr key={index} className="text-xs lg:text-base font-semibold text-center border-b-2 border-slate-200">
+                    <td className="w-[10%] py-3">{index+1}</td>
+                    <td className="w-[25%] text-left">{item.product.product_name}</td>
+                    <td className="w-[5%]">{item.ColorOnSide.color.color_name}</td>
+                    <td className="w-[5%]">{item.ColorOnSide.size.size_name}</td>
+                    <td className="hidden md:table-cell w-[5%]">{item.product.product_price}</td>
+                    <td className="w-[10%]">{item.item_amount}</td>
                     <td className="hidden md:table-cell w-[10%]">
                       <button className="w-[90%] lg:w-[80%] xl:w-[70%] 2xl:w-[60%] text-sm lg:text-base bg-green-300 font-medium rounded-full "
                         style={{
-                          backgroundColor: handleStockStatus(item.amount).bgcolor,
-                          color: handleStockStatus(item.amount).colorText
+                          backgroundColor: handleStockStatus(item.item_amount).bgcolor,
+                          color: handleStockStatus(item.item_amount).colorText
                         }}>
-                        {handleStockStatus(item.amount).status}</button>
+                        {handleStockStatus(item.item_amount).status}</button>
                     </td>
                     <td className="w-[10%] text-center px-3 md:px-8 lg:px-5 xl:px-8 align-middle">
                       <FaRegEdit className="text-xs lg:text-lg float-left text-green-700 font-bold" />
