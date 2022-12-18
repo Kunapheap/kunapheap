@@ -20,5 +20,25 @@ module.exports = itemService = {
 
         return color;
     
-    }
+    },
+    getAllItem : async () => {
+        const items = await prisma.item.findMany({
+            take : 20,
+            orderBy : [
+                {
+                    product_id : 'asc'
+                }
+            ],
+            include : {
+                product : true,
+                ColorOnSide : {
+                    include : {
+                        size : true,
+                        color : true
+                    }
+                }
+            }
+        })
+        return items;
+    } 
 }

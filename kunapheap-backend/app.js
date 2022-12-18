@@ -1,6 +1,9 @@
 const express = require('express');
 const createError = require('http-errors');
 const morgan = require('morgan');
+
+const path = require('path')
+
 const cors = require('cors')
 require('dotenv').config();
 
@@ -13,6 +16,8 @@ app.use(morgan('dev'));
 app.get('/', async (req, res, next) => {
   res.send({ message: 'Awesome it works 🐻' });
 });
+
+// app.use(express.static(path.join(__dirname,'build')))
 
 app.use('/admin', require('./src/routes/api.route'));
 app.use('/user',require('./src/routes/user.route'));

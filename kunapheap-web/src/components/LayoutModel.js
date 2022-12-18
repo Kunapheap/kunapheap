@@ -6,6 +6,7 @@ function LayoutModel({product}) {
   const [myFilter,setMyFilter] = useState([])
 
   const filtered = () => {
+    console.log(product.item)
 
     const arr = [...product.item];
     var arr2 = [];
@@ -28,7 +29,7 @@ function LayoutModel({product}) {
   return (
     <div>
       <div className='w-full shadow-lg p-2 gap-y-3 flex justify-center flex-col hover:-translate-y-2 hover:shadow-xl'>
-        <img src={product.image[0].image_link} alt={product.image[0].image_link} className='object-cover h-40 sm:h-52 md:h-60 lg:h-72 xl:h-80 px-10'></img>
+        <img src={product.item[0].image[0].image_link} alt={product.item[0].image[0].image_link} className='object-cover h-40 sm:h-52 md:h-60 lg:h-72 xl:h-80 px-10'></img>
         <div className='lg:p-2 lg:pt-1'>
           <p className='text-secondary'>$ {product.product_price} </p>
           <div className='flex gap-x-1'>

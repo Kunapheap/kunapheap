@@ -20,6 +20,7 @@ function NewArrivalLayout() {
   const getProduct = async () => {
     setLoading(true);
     const res = await axios.get(api.getAllProdct);
+    console.log(res.data)
     dispatch(setProduct(res.data));
     setLoading(false);
     return;

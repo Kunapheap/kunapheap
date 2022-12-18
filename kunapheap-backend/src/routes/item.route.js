@@ -8,6 +8,8 @@ router.get('/', (req,res) => {
     })
 })
 
+router.get('/allItems',itemController.getAllItem)
+
 router.get('/allColor/:product_id',itemController.getColorByItem)
 
 module.exports = router;
