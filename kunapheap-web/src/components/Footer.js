@@ -73,14 +73,14 @@ function Footer() {
 
   return (
     <>
-      <div className="bg-secondary w-full py-4 pb-7 lg:px-24 grid grid-cols-2 md:grid-cols-4">
+      <div className="bg-secondary w-full py-4 pb-7 lg:px-14 grid grid-cols-2 md:grid-cols-4">
         {menus.map((item, index) => (
-          <div className="mx-4 " key={index}>
-            <h3 className="font-bold"> {item.menu} </h3>
+          <div className="mx-4" key={index}>
+            <h3 className="md:text-base font-semibold lg:text-base text-primary "> {item.menu} </h3>
             <ul>
               {item.items.map((list, index) => (
                 <Link to={list.item_path} key={index}>
-                  <li className="text-sm font-semibold pl-4 py-0.5 hover:text-bgColor">
+                  <li className="md:text-sm md:py-0 text-base lg:text-sm font-medium pl-2 hover:text-bgColor">
                     {list.item_desc}
                   </li>
                 </Link>
