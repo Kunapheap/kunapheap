@@ -3,14 +3,14 @@ import { AiOutlineMenuUnfold, AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 function Navbar() {
-  
+
   const [toggleNav, setToggleNav] = useState(false);
 
   return (
-    <div className="sm:-z-20 z-10 bg-yellow-50 w-full">   
+    <div className="sm:-z-20 z-10 bg-yellow-50 w-full">
       {toggleNav ? (
         <AiOutlineClose
-          className={`text-4xl  fixed z-30 sm:hidden`}
+          className={`text-4xl fixed z-30 sm:hidden`}
           onClick={() => setToggleNav(!toggleNav)}
         />
       ) : (
@@ -21,21 +21,21 @@ function Navbar() {
       )}
 
       <div
-        className={` sm:bg-bgColor sm:text-2xl text-lg z-20
-         w-full sm:w-full justify-between px-1 sm:px-4 md:px-16
-          font-semibold h-screen fixed sm:h-12 transition-all ease-in-out duration-1000
-           ${
-             toggleNav
-               ? "translate-x-0 '"
-               : "-translate-x-full sm:translate-x-0"
-           }`}
-        onClick={() => setToggleNav(!toggleNav)}
-      >
+        className={`sm:bg-bgColor z-20 md:text-lg xl:text-2xl 2xl:text-3xl
+          w-full sm:w-full justify-between px-1 sm:px-4 md:px-9
+            font-semibold h-screen fixed sm:h-12 transition-all ease-in-out duration-1000
+            ${toggleNav
+              ? "translate-x-0 '"
+              : "-translate-x-full sm:translate-x-0"
+            }`}
+          onClick={() => setToggleNav(!toggleNav)}
+        >
         <div className="bg-secondary sm:h-8 h-screen w-[50%] sm:w-full sm:bg-bgColor -mx-1 mt-2">
-          <ul className="pt-10 sm:pt-0 flex flex-col sm:flex-row sm:justify-between">
+          <ul className="pt-10 sm:pt-0 flex flex-col sm:flex-row sm:justify-between ">
             <Link to="/">
               <li
-                className="hover:text-secondary px-2 cursor-pointer py-1 mx-1
+                className="hover:text-secondary px-2 cursor-pointer py-1 mx-1 
+                
              hover:bg-primary sm:hover:bg-transparent rounded-lg hover:px-3 sm:hover:px-2 "
               >
                 Home

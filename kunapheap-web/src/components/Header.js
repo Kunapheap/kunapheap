@@ -24,7 +24,7 @@ function Header() {
        className="flex items-center">
         <img 
          src={logo} alt="logo" className="w-12 md:w-16 App-logo cursor-pointer" />
-        <h1 className="text-2xl md:text-4xl font-semibold">Kunapheap Store</h1>
+        <h1 className="text-xl lg:text-2xl xl:text-3xl  font-semibold">Kunapheap Store</h1>
       </div>
       <div className="flex items-center gap-4 ">
         <FaSearch className="md:text-2xl"  />
