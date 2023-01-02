@@ -2,6 +2,67 @@ const { PrismaClient } = require("@prisma/client");
 const colorOnSizeService = require("./colorOnSizeService");
 const prisma = new PrismaClient();
 
+//function helper
+async function getNewArrivalFunc(amout) {
+
+  //callback function
+  const getProduct = async (product_id) => {
+    return await prisma.product.findUnique({
+      where : {
+        product_id : product_id
+      },
+      include: {
+        item: {
+          include: {
+            ColorOnSide: {
+              include: {
+                color: true,
+                size: true,
+              },
+            },
+            image : true
+          },
+        },
+      },
+    })
+  }
+  
+  //newest item
+  const newestItem = await prisma.item.findMany({
+    take : 50,
+    orderBy : {
+      item_created_date : 'desc'
+    },
+  });
+
+  const arr_product = newestItem.map((item) => {
+    return item.product_id
+  })
+
+  const filteredProduct = arr_product.filter((value, index, arr) => {
+    return arr.indexOf(value) === index;
+  });
+
+  const newArrivalProduct = [];
+
+  if(filteredProduct.length < amout ) {
+    amout = filteredProduct.length
+  }
+
+
+
+  for(i=0;i<amout;i++){
+    const product =  await getProduct(filteredProduct[i])
+    newArrivalProduct[i] = product;
+  }
+
+  console.log(newArrivalProduct.includes(null))
+
+    return newArrivalProduct.filter((product) => product !== null)
+
+
+}
+
 module.exports = productService = {
   getAllProduct: async () => {
     const products = await prisma.product.findMany({
@@ -91,5 +152,14 @@ module.exports = productService = {
       product,
       colorOnSize,
     };
+  },
+
+  
+  getNewArrivalPage : async () => {
+    return await getNewArrivalFunc(20)
+  },
+
+  getNewArrival: async () => {
+    return await getNewArrivalFunc(5)
   },
 };

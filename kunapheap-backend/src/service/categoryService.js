@@ -29,11 +29,7 @@ async function getACategory(category_name) {
             },  
 
             include : {
-                product : {
-                    include : {
-                        image : true
-                    }
-                }
+                product : true
             }
             
         });
@@ -46,11 +42,9 @@ async function getACategory(category_name) {
 }
 
 async function getAllCategoryName () {
-    console.log('work')
     const categories = await prisma.category.findMany({
         take : 5
     })
-    console.log(categories)
     return categories;
 }
 
