@@ -7,6 +7,7 @@ import axios from "axios";
 import api from "../app/api/apiRoute";
 import Loading from "../components/Loading";
 import ViewProductLayout from "../components/ViewProductLayout";
+import NewArrivalLayout from "../components/NewArrivalLayout";
 
 function ViewProduct() {
   const navigate = useNavigate();
@@ -44,9 +45,12 @@ function ViewProduct() {
       loading && <Loading />
     }
       {product !== undefined && (
+        <>
         <div className="flex flex-col sm:flex-row py-5">
           <div className="w-full sm:w-[50%] h-[50%] flex justify-center ">
-            <ViewProductLayout image={product.product.item[0].image[0].image_link} />
+            <ViewProductLayout
+            //  image={product.product.item[0].image[0].image_link} 
+             item={product.product.item} />
           </div>
           <div className="w-full flex flex-col px-5">
             <p className="font-semibold text-xl">{product.product.product_name}</p>
@@ -57,7 +61,7 @@ function ViewProduct() {
             <div className="flex gap-3">
               {product.colorOnSize.map((item, index) => (
                 <div className="py-2" key={index} onClick={() => setColorIndex(index)}>
-                  <div className="sm:w-16 w-12 sm:h-14 h-10" style={{ backgroundColor: item.color }}>
+                  <div className="sm:w-16 w-12 sm:h-14 h-10 border-2" style={{ backgroundColor: item.color }}>
                     {" "}
                   </div>
                   <p className="font-semibold text-center py-1 " style={{color : item.color }}>{ item.color }</p>
@@ -73,9 +77,7 @@ function ViewProduct() {
                 product.colorOnSize[colorIndex].size.map((size,index)=>{
                   if(size !== null) {
                     return (<option value={size} key={index}>{size}</option>)
-                  }
-                  
-                    
+                  }   
                 })
               }
             </select>
@@ -102,9 +104,10 @@ function ViewProduct() {
               Add to cart
             </button>
             </div>
-            
           </div>
         </div>
+        <NewArrivalLayout />
+        </>
       )}
     </>
   );

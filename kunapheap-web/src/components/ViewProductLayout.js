@@ -1,28 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import Slider from "react-slick";
 
-function ViewProductLayout({image}) {
+function ViewProductLayout({item}) {
 
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4000,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
   };
-
- const data = [1,2,3,4,5,6]
 
   return (
     <>
       <div className="w-[90%] md:w-[70%] lg:w-[50%] mx-auto mb-5">
         <Slider {...settings}>
-          {data.length !== 0 &&
-            data?.map((item, index) => (
-              <img className="text-center" src={image} alt="test" key={index} />
+          {item.length !== 0 &&
+            item?.map((img, index) => (
+              <img className="text-center"
+               src={img.image[0].image_link} 
+               alt="test" key={index} />
             ))}
         </Slider>
       </div>

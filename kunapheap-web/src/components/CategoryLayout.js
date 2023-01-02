@@ -73,6 +73,12 @@ function CategoryLayout() {
               <p className="text-2xl font-semibold  text-center bg-white px-5"> {item.category_name}</p>
             </div>
           ))}
+          {category.length !== 0 && category?.map((item,index) => (
+            <div className="border" key={index}>
+              <img src={item.product[0].item[0].image[0].image_link} className="object-contain w-52 h-48 mx-auto" alt=''  key={item.category_id}/>
+              <p className="text-2xl font-semibold  text-center bg-white px-5"> {item.category_name}</p>
+            </div>
+          ))}
         </Slider>
       </div>
     </>

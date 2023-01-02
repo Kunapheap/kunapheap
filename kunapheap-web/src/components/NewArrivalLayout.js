@@ -5,23 +5,23 @@ import { FiLoader } from "react-icons/fi";
 import "../style/App.css";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { setProduct } from "../app/slice/productSlide";
 import api from "../app/api/apiRoute";
 import { useNavigate } from "react-router-dom";
 import { setViewProduct } from "../app/slice/viewProductSlide";
+import { setNewArrivalProduct } from "../app/slice/newArrivalProduct";
 
 function NewArrivalLayout() {
   const [laoding, setLoading] = useState(false);
 
-  const products = useSelector((state) => state.product.value);
+  const products = useSelector((state) => state.new_arrival_product.value);
   const dispatch = useDispatch();
   const navigator = useNavigate();
 
   const getProduct = async () => {
     setLoading(true);
-    const res = await axios.get(api.getAllProdct);
+    let res = await axios.get(api.getNewArrivalProduct);
     console.log(res.data)
-    dispatch(setProduct(res.data));
+    dispatch(setNewArrivalProduct(res.data));
     setLoading(false);
     return;
   };
@@ -30,6 +30,14 @@ function NewArrivalLayout() {
     if (products.length === 0) {
       getProduct();
     }
+    const time = setTimeout(() => {
+     
+    }, 2000);
+
+    return () => {
+      clearTimeout(time);
+    };
+    
   });
 
   const handleViewProduct = (product_id) => {
@@ -59,6 +67,11 @@ function NewArrivalLayout() {
             />
           </div>
         ))}
+      </div>
+      <div className='w-full flex justify-center items-center my-2'>
+        <button className='font-bold h-10 border border-secondary px-4 rounded-lg' 
+        onClick={() => navigator('/newarrival')}
+        >see more</button>
       </div>
     </div>
   );

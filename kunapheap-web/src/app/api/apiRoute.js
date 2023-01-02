@@ -1,10 +1,10 @@
-// const url = 'http://localhost:8080'
+const url = 'http://localhost:8080'
 // const url = 'http://192.168.8.137:8080'
 // const url = 'http://192.168.127.160:8080'
 // const url = 'http://192.168.144.160:8080'
 // const url = 'http://172.20.10.7:8080'
 // const url = 'http://kunapheap.com:8000'
-const url = 'https://kunapheap.com'
+// const url = 'https://kunapheap.com'
 
 const  api = {
     'user_login_url' : url + '/user/login',
@@ -15,7 +15,10 @@ const  api = {
     'update_user' : url + '/user/updateUser',
     'getAllCategory' : url + '/category/allcategory',
     'getOneProduct' : url + '/product/product_id/',
-    'getAllProdct' : url + '/product/getAllProduct'
+    'getAllProdct' : url + '/product/getAllProduct',
+    'getNewArrivalProduct' : url + '/product/newArrival',
+    'getNewArrivalPage' : url + '/product/newArrivalPage',
+   
 }
 
 export default api
