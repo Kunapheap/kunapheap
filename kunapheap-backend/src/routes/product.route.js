@@ -10,5 +10,8 @@ router.get('/product_id/:product_id',productController.getProduct)
 router.get('/newArrival',productController.getNewArrivalProduct)
 router.get('/newArrivalPage',productController.getNewArrivalPage)
 
-module.exports = router;
+//get all product without include anything  
+router.get('/All',productController.getSearchProduct)
 
+module.exports = router;
+   

@@ -1,15 +1,15 @@
 import React from 'react'
 import { IoIosArrowForward } from "react-icons/io";
 import ButtonUpdate from "../components/ButtonUpdate";
-import ButtonCancel from "../components/ButtonCancel"; 
-import DropDownCustom from "../components/DropDownCustom"; 
+import ButtonCancel from "../components/ButtonCancel";  
 import TextBoxDate from "../components/TextBoxDate";
 import TextBoxDisplay from '../components/TextBoxDisplay';  
 import { useNavigate } from "react-router-dom";
-function UpdateList() {
+
+
+function UpdateProduct() {
+
   const navigate = useNavigate() 
-  
-  
 
   return (
     <div className="w-full h-screen bg-blue-200 lg:pl-4 rounded-l-2xl lg:rounded-l-3xl">
@@ -77,7 +77,7 @@ function UpdateList() {
                 placeholderName: "Hi hi hi"
               }} />
             </div>
-            <div className='sm:mb-3 md:mb-4 lg:mb-6'>
+            {/* <div className='sm:mb-3 md:mb-4 lg:mb-6'>
               <DropDownCustom DropDownCustomProp="Category" />
             </div>
             <div className='sm:mb-3 md:mb-4 lg:mb-6'>
@@ -85,7 +85,7 @@ function UpdateList() {
             </div>
             <div className='sm:mb-3 md:mb-4 lg:mb-6'>
               <DropDownCustom DropDownCustomProp="Discount" />
-            </div>
+            </div> */}
             <div className="flex justify-between float-right
                               mt-4 lg:mt-20 xl:mt-11
                               pb-4 lg:pb-2
@@ -101,4 +101,4 @@ function UpdateList() {
   )
 }
 
-export default UpdateList
+export default UpdateProduct

@@ -17,6 +17,7 @@ function EditProfile() {
   const [firstname, setFirstname] = useState(current_user.user_firstname);
   const [lastname, setLastname] = useState(current_user.user_lastname);
   const [email, setEmail] = useState(current_user.user_email);
+  
   const [phone_number, setPhoneNumber] = useState(
     current_user.user_phone_number
   );

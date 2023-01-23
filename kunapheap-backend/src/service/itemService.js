@@ -1,8 +1,10 @@
 const {PrismaClient} = require('@prisma/client')
+const {imageService} = require('../service/imageService')
 const prisma = new PrismaClient()
 
 
 module.exports = itemService = {
+
     getColorByItem : async (product_id) => {
         const color = await prisma.item.findMany({
             include : {
@@ -40,5 +42,36 @@ module.exports = itemService = {
             }
         })
         return items;
-    } 
+    },
+    createItemImage : async (filename,buffer) => {
+        return imageService.putImageSingle(filename,buffer)
+    },
+
+    createItem : async (product_id,colorOnSide,item_amount) => {
+
+        try {
+            const item = prisma.item.create({
+                data : {
+                   item_amount : parseInt(item_amount),
+                   product : {
+                       connect : {
+                           product_id : product_id
+                       }
+                   },
+                   ColorOnSide : {
+                       connect : {
+                           color_id_size_id : {
+                               color_id : colorOnSide.color_id,
+                               size_id : colorOnSide.size_id
+                           }
+                       }
+                   }
+                },
+               })
+               return item
+        } catch (err) {
+            console.log(err)
+        }
+          
+    }
 }

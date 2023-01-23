@@ -1,5 +1,16 @@
-const {getAllCategory,getACategory,getAllCategoryName} = require('../service/categoryService')
+const {getAllCategory,getACategory,getAllCategoryName,categoryService} = require('../service/categoryService')
 
+const categoryController = {
+    createCategory : async (req,res) => {
+       const category_name = req.body.category_name
+       console.log(category_name)
+       const category = await categoryService.createCategory(category_name);
+       return res.status(201).send({
+        msg : "success",
+        category : category
+       })
+    }
+}
 
 async function getAllCategories (req,res) {
     const all_categories = await getAllCategory()
@@ -11,14 +22,9 @@ async function getCategory (req,res) {
     return res.status(200).send(category)
 }
 
-async function getAllCategoryNameZin (req,res) {
-    return res.status(200).send({msg : "hello"})
-    const categories = await getAllCategoryName()
-    return res.status(200).send(categories)
-}
 
 async function test (req,res) {
     return res.send({msg : 'work'})
 }
 
-module.exports = {getAllCategories,getCategory,getAllCategoryNameZin,test}
+module.exports = {getAllCategories,getCategory,test,categoryController}

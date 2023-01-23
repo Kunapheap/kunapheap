@@ -13,6 +13,7 @@ import AddProduct from "./Pages/AddProduct";
 import Order from "./Pages/Order";
 import ProductList from "./Pages/ProductList";
 import SeeMoreOrder from "./Pages/SeeMoreOrder";
+import UpdateProduct from "./Pages/UpdateProduct";
 
 function App() {
 
@@ -49,8 +50,8 @@ function App() {
             <Route path="/productlist" element={<ProductList />} />
             <Route path="/SeeMore" element={<SeeMore/>}/>
             <Route path="/SeeMoreOrder" element={<SeeMoreOrder />}/>
+            <Route path="/updateProduct" element={<UpdateProduct />} />
           </Routes> 
-
           
         </div>
       </div>

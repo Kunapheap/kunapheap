@@ -64,6 +64,37 @@ async function getNewArrivalFunc(amout) {
 }
 
 module.exports = productService = {
+
+  searchProduct : async () => {
+    try{
+      const product = await prisma.product.findMany()
+      return product;
+    }catch(err) {
+      console.log(err)
+    }
+    
+  },
+  createProduct : async (product,category_id) => {
+    try {
+      const createdProduct = await prisma.product.create({
+        data : {
+          product_name : product.product_name,
+          product_price : String(product.product_price),
+          product_discount : 0,
+          category : {
+            connect : {
+              category_id : category_id
+            }
+          }
+        }
+      })
+      return createdProduct;
+    } catch(err) {
+      console.log(err)
+    }
+  }
+  ,
+
   getAllProduct: async () => {
     const products = await prisma.product.findMany({
       take: 10,

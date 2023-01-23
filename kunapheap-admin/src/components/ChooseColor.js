@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function ChooseColor() {
+function ChooseColor({selectColor,setSelectColor}) {
   const [colorCode, setColorCode] = useState("#000000")
   return (
     <>
@@ -10,7 +10,7 @@ function ChooseColor() {
           <input
             type="color"
             className="w-1/2 h-8 xl:h-10 px-0.5 rounded-md border-2 border-gray-400"
-            onChange={(e) => { setColorCode(e.target.value); console.log(colorCode) }}
+            onChange={(e) => { setSelectColor(e.target.value); console.log(colorCode) }}
           />
           <input
             className="w-1/2
@@ -19,7 +19,7 @@ function ChooseColor() {
                     font-normal text-sm lg:text-lg text-gray-600
                     rounded-md 
                     py-0 pl-1 xl:py-1.5"
-            placeholder={colorCode}
+            placeholder={selectColor}
             disabled
           />
         </div>

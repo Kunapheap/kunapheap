@@ -6,5 +6,6 @@ router.get('/', async (req, res, next) => {
 });
 
 router.get('/color/:product_id',colorOnSizeController.getColor)
+router.get('/allSize',colorOnSizeController.getAllSize)
 
 module.exports = router;

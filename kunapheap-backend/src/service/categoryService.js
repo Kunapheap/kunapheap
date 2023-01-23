@@ -1,6 +1,24 @@
 const {PrismaClient} = require('@prisma/client')
 const prisma = new PrismaClient()
 
+const categoryService = {
+
+    createCategory : async (category_name) => {
+        try{
+            const category = await prisma.category.create(
+                {
+                    data : {
+                        category_name : category_name
+                    }
+                }
+            )
+            console.log(category)
+            return category;
+        }catch(err){
+            console.log(err)
+        } 
+    }
+}
 
 async function getAllCategory() {
     const category = await prisma.category.findMany({
@@ -49,4 +67,4 @@ async function getAllCategoryName () {
 }
 
 
-module.exports = {getAllCategory,getACategory,getAllCategoryName}
+module.exports = {getAllCategory,getACategory,getAllCategoryName,categoryService}

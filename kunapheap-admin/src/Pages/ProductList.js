@@ -2,15 +2,19 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FaTrash, FaRegEdit, FaAws } from "react-icons/fa";
 import { GrFormDown } from "react-icons/gr";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import api from "../app/api/apiRoute";
+import { setCategory } from "../app/user/categorySlide";
 function ProductList() {
   const navigate = useNavigate();
   const [toggleCategory, setToggleCategory] = useState(false);
   const [items, setItems] = useState([]);
-  const [category, setCategory] = useState([1, 2, 3]);
+  // const [category, setCategory] = useState([]);
 
-  const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
+  const category = useSelector(state => state.category.value)
+  const dispatch = useDispatch();
+
 
   function handleStockStatus(amount) {
     if (amount < 1) {
@@ -35,7 +39,7 @@ function ProductList() {
   const getAllCategory = async () => {
     const res = await axios.get(api.get_all_category);
     console.log(res.data)
-    setCategory(res.data)
+    dispatch(setCategory(res.data))
   }
 
   useEffect(() => {
@@ -72,7 +76,7 @@ function ProductList() {
               >
                 <ul className=" rounded-xl text-base font-medium text-slate-600 ">
                   {category?.map((item, index) => (
-                    <li className="border-b-2 pl-2 border-slate-300 hover:bg-blue-100" key={index}>
+                    <li className="border-b-2 pl-2 border-slate-300 hover:bg-blue-100 cursor-pointer" key={index}>
                       {item.category_name}
                     </li>
                   ))}
@@ -130,7 +134,10 @@ function ProductList() {
                     </button>
                   </td>
                   <td className="w-[10%] text-center px-3 md:px-8 lg:px-5 xl:px-8 align-middle">
-                    <FaRegEdit className="text-xs lg:text-lg float-left text-green-700 font-bold" />
+                    <FaRegEdit 
+                     className="text-xs lg:text-lg float-left text-green-700 font-bold"
+                     onClick={() => navigate("/updateProduct")}
+                     />
                     <FaTrash className="text-xs lg:text-base float-right text-red-600" />
                   </td>
                   <td className="w-[10%]">

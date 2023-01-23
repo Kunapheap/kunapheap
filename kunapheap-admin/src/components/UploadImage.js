@@ -1,14 +1,16 @@
-import React, {useEffect, useState} from 'react'
+import React, { useState } from 'react'
 
-function UploadImage() {
-  const [file, setFile] = useState();
+function UploadImage({setImage}) {
+
+  const [file,setFile] = useState();
+
   function handleChange(e) { 
+    setImage(e.target.files[0])
     setFile(URL.createObjectURL(e.target.files[0]));
   }
 
   return (
     <>
-      <div >
         <label className='text-base font-medium pl-1 lg:text-lg xl:text-xl text-gray-700'>Upload Image</label>
         <div className="w-12 relative mt-0.5">
           <img
@@ -26,7 +28,6 @@ function UploadImage() {
           />
         </div>
         <img src={file} />
-      </div>
     </>
   );
 }
