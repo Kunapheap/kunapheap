@@ -107,7 +107,7 @@ async function createUser(getUser) {
         user_password: getUser.user_password,
         user_gender: getUser.user_gender,
         user_phone_number: getUser.user_phone_number,
-        user_email: getUser.user_email,
+        user_email: getUser.user_email, 
         user_image_link:
           "https://kunapheap.s3.ap-southeast-1.amazonaws.com/avatar.png",
         role: {

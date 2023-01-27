@@ -12,6 +12,17 @@ module.exports = itemController = {
         const item = await itemService.getAllItem()
         res.status(200).send(item);
     },
+    getItemById : async (req,res) => {
+
+      const item = await itemService.getItemById(req.params.id);
+      return res.status(200).send(item);
+    },
+
+    getItemByCategory : async (req,res) => {
+      const items = await itemService.getItemByCategory(req.params.category);
+      return res.status(200).send(items);
+
+    },
 
     createItemImage : async (req,res) =>  {
         try {
@@ -30,7 +41,6 @@ module.exports = itemController = {
     },
 
     createItem : async (req,res) => {
-
 
       
       (
@@ -90,4 +100,4 @@ module.exports = itemController = {
       })
     }
 
-}
+} 

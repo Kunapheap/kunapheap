@@ -9,10 +9,13 @@ const itemController = require('../controller/itemController')
 // })
 
 router.get('/allItems',itemController.getAllItem);
+router.get('/getItem/:id',itemController.getItemById);
+router.get('/getItemByCategory/:category',itemController.getItemByCategory);
 router.post('/', itemController.createItem);
 router.post('/image',
 upload.single("image"),
 itemController.createItemImage);
+
 
 router.get('/allColor/:product_id',itemController.getColorByItem)
 

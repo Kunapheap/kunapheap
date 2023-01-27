@@ -13,7 +13,7 @@ const {
 async function loginAdmin(req, res) {
   const user = await getUsername(req.body.user_username);
   const role = await getRole({ myRole: "Admin" });
-
+  
   if (user == undefined) {
     res.status(404).send({ msg: "invalid user" });
   }
@@ -23,12 +23,17 @@ async function loginAdmin(req, res) {
       res.status(401).send({ msg: " Unauthorized" });
       return;
     } else if (user.user_password === req.body.user_password) {
-      res.status(200).json(user);
+      const token = generateToken(user.user_id);
+      res.status(200).json({
+        user_name : user.user_username,
+        token : token,
+      });
       return;
     }
     res.status(403).send({ msg: "incorrect password" });
   }
 }
+
 
 async function logInUser(req, res) {
   const user = await getUsername(req.body.user_username);
