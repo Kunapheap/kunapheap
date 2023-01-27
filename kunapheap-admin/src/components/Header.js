@@ -2,7 +2,14 @@ import React, { useEffect, useState } from "react";
 import { IoNotificationsSharp, IoSearchSharp } from "react-icons/io5";
 import { FaUser } from "react-icons/fa";
 
-function Header() {
+function Header({ img }) {
+
+  const [toggleLogout,setToggleLogout] = useState(false);
+  const handleLogOut = () => {
+    localStorage.clear();
+    window.location.reload();
+  }
+
   return (
     <>
       <div className="sticky top-0">
@@ -16,30 +23,36 @@ function Header() {
               />
               <IoSearchSharp className="absolute top-2 lg:top-2 left-9 lg:left-8 text-slate-700" />
               <select className="w-[19%] absolute right-8 top-1 pb-1 align-middle text-sm  text-slate-800 bg-blue-300 border-l-2 border-blue-500 focus:text-gray-700 focus:bg-blue-400 focus:border-blue-400 focus:outline-blue-500">
-                <option value='id'>ID</option>
-                <option value='name'>Name</option>
+                <option value="id">ID</option>
+                <option value="name">Name</option>
               </select>
             </div>
             <div className="w-[18%] bg-blue-300 rounded-2xl hover:shadow-lg">
-              <button className="w-full h-full text-center text-primary ">Search</button>
+              <button className="w-full h-full text-center text-primary ">
+                Search
+              </button>
             </div>
-             
           </div>
-
-
-
 
           <div className="justify-between pl-8 lg:pl-0 flex py-2 gap-3 items-center mr-4 w-full lg:justify-end">
             <Clock />
             <div className="flex flex-row gap-3">
-
-              <IoNotificationsSharp className="text-[18px] text-primary" />
-              <FaUser className=" text-primary" />
+              <IoNotificationsSharp className="text-2xl text-primary" />
+              {img !== undefined ? (
+                <div>
+                  <img className="w-8 relative" src={img} alt="avatar" onClick={() => setToggleLogout(!toggleLogout)} />
+                  { toggleLogout &&
+                    <div className={`absolute transition-all right-4 md:-bottom-3 bottom-3  border rounded-sm text-center bg-white p-1 px-4 hover:bg-red-400 hover:text-white cursor-pointer text-red-400`}
+                    onClick={handleLogOut}
+                    >Log out</div>}
+                </div>
+              ) : (
+                <FaUser className="text-2xl text-primary" />
+              )}
             </div>
           </div>
         </div>
       </div>
-
     </>
   );
 }

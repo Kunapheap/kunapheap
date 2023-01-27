@@ -11,6 +11,10 @@ import DropdownSize from "../components/DropdownSize";
 import InputProduct from "../components/InputProduct";
 import UploadImage from "../components/UploadImage";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Loading from "../components/Loading";
+
 function AddProduct() {
 
   const [selectedCategory, setSelectCategory] = useState();
@@ -19,10 +23,12 @@ function AddProduct() {
   const [oneProduct, setOneProduct] = useState({});
   const [amout, setAmout] = useState(0);
   const [image, setImage] = useState();
+  const [loading,setLaoding] = useState(false)
 
   const category = useSelector((state) => state.category.value);
   const dispatch = useDispatch();
   const priceRef = useRef();
+  
 
   const getAllCategory = async () => {
     const res = await axios.get(api.get_all_category);
@@ -31,16 +37,21 @@ function AddProduct() {
   };
 
   const createItem = async (e) => {
-    const link = await uploadImage();
-
+    
+    setLaoding(true);
+    
     if(selectedCategory === undefined 
       || selectedSize === "select size" 
       || amout === 0 
       || image === undefined
-      || oneProduct === undefined ) {
+      || oneProduct === undefined 
+      || image === undefined) {
       
-        console.log("true")
+        toast.warning("please input all field!")
+        setLaoding(false);
+        return;
     } else {
+      const link = await uploadImage();
       const data = {
         size_name : selectedSize,
         color_name : selectColor,
@@ -64,11 +75,15 @@ function AddProduct() {
           }
         })
         console.log(res.data)
+
+          toast.success("successfully added");
+
       }catch(err) {
         console.log(err)
       }
     }
-    
+
+    setLaoding(false);
 
   }
 
@@ -105,6 +120,7 @@ function AddProduct() {
 
   return (
     <div>
+      <ToastContainer />
       <div className="w-full h-screen bg-blue-200 lg:pl-6 rounded-l-2xl lg:rounded-l-3xl">
         <h1 className="font-bold text-xl ml-4 lg:text-2xl xl:text-3xl py-1.5 text-primary">
           Add Product
@@ -212,7 +228,9 @@ function AddProduct() {
                 py-0.5 "
                 onClick={createItem}
               >
-                Add
+                {
+                  loading ? <Loading type={"spin"} color={"#FFFFFF"} /> : "Add"
+                }
               </button>
               <ButtonCancel />
             </div>

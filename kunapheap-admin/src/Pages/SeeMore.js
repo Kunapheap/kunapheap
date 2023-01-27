@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 function SeeMore() {
 
   const navigate = useNavigate()
-
+  const item = useSelector(state => state.item.value);
 
   const data = [
     {
@@ -20,6 +21,12 @@ function SeeMore() {
       discount: 0,
     }
   ]
+
+  useEffect(() => {
+
+    console.log(item)
+    console.log(new Date(item.item_created_date))
+  },[])
 
   return (
 
@@ -41,12 +48,11 @@ function SeeMore() {
           <div className=" w-full overflow-auto flex-col lg:flex-row h-[80%] 
                   scrollbar-thin scrollbar-thumb-gray-400 scrollbar-thumb-rounded-full">
             {/* Image */}
-            <div>
+            {/* <div>
               <img src="" className="w-full h-52 bg-secondary mt-6"></img>
-            </div>
-            {
-              data.map((item, index) => (
-                <div key={index} className="w-[100%]">
+            </div> */}
+
+                <div className="w-full">
                   {/* Input  */}
                   <div className="w-full flex flex-col lg:flex-row gap-x-4 px-4 mt-6">
                     <div className="w-full">
@@ -55,7 +61,7 @@ function SeeMore() {
                       </label>
                       <input
                         className="w-full h-8 md:h-10 py-2 pl-1 border-2 border-gray-300 rounded-md"
-                        placeholder={item.dateInStock}
+                        placeholder={new Date(item.item_created_date).toDateString()}
                         disabled
                       />
                     </div>
@@ -82,7 +88,7 @@ function SeeMore() {
                       </label>
                       <input
                         className="w-full h-8 md:h-10 py-2 pl-1 border-2 border-gray-300 rounded-md"
-                        placeholder={item.nameProduct}
+                        placeholder={item.product.product_name}
                         disabled
                       />
                     </div>
@@ -93,7 +99,7 @@ function SeeMore() {
                       </label>
                       <input
                         className="w-full h-8 md:h-10 py-2 pl-1 border-2 border-gray-300 rounded-md"
-                        placeholder={item.amountProduct}
+                        placeholder={item.item_amount}
                         disabled
                       />
                     </div>
@@ -106,7 +112,7 @@ function SeeMore() {
                       </label>
                       <input
                         className="w-full h-8 md:h-10 py-2 pl-1 border-2 border-gray-300 rounded-md"
-                        placeholder={item.sizeProduct}
+                        placeholder={item.ColorOnSide.size.size_name}
                         disabled
                       />
                     </div>
@@ -116,8 +122,9 @@ function SeeMore() {
                       </label>
                       <div className="flex">
                         <div className="w-10 h-10 md:w-11 md:h-11 rounded-md"
-                          style={{ backgroundColor: item.colorProductCode }}></div>
-                        <p className="text-xs md:text-base font-semibold pl-2 py-3">{item.colorProduct}</p>
+                          style={{ backgroundColor: item.ColorOnSide.color.color_name }}
+                          ></div>
+                        <p className="text-xs md:text-base font-semibold pl-2 py-3">{item.ColorOnSide.color.color_name}</p>
                       </div>
                     </div>
                   </div>
@@ -130,7 +137,7 @@ function SeeMore() {
                         </label>
                         <input
                           className="w-full h-8 md:h-10 py-2 pl-1 border-2 border-gray-300 rounded-md"
-                          placeholder={item.priceProduct}
+                          placeholder={item.product.product_price}
                           disabled
                         />
                       </div>
@@ -140,7 +147,7 @@ function SeeMore() {
                         </label>
                         <input
                           className="w-full h-8 md:h-10 py-2 pl-1 border-2 border-gray-300 rounded-md"
-                          placeholder={item.discount}
+                          placeholder="0"
                           disabled
                         />
                       </div>
@@ -153,8 +160,6 @@ function SeeMore() {
                     </div>
                   </div>
                 </div>
-              ))
-            }
           </div>
         </div>
       </div>

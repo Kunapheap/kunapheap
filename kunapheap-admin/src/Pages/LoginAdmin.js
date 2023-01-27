@@ -12,7 +12,6 @@ function LoginAdmin() {
   const [alert, setAlert] = useState("")
 
   const user = useSelector(state => state.user.value)
-
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -31,8 +30,10 @@ function LoginAdmin() {
         "user_username": username,
         "user_password": password
       })
-      dispatch(setUser(res.data))
-      setAlert(user.user_username)
+      console.log(res.data)
+      localStorage.setItem("username",res.data.user_name);
+      localStorage.setItem("token","bearer "+res.data.token)
+      window.location.reload()
     } catch (err) {
       setAlert(err.response.data.msg)
     }

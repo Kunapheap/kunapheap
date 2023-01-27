@@ -27,7 +27,8 @@ function UploadImage({setImage}) {
             type="file" onChange={handleChange}
           />
         </div>
-        <img src={file} />
+        
+        <img src={file} className="w-1/2" />
     </>
   );
 }
