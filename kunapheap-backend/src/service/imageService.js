@@ -48,6 +48,18 @@ const imageService = {
       console.log(err)
     }
     
+  },
+   getImageByItemId : async (item_id) => {
+    const item = await prisma.item.findUniqueOrThrow({
+      include : {
+        image : true
+      },
+     where :{
+      item_id : item_id,
+     }
+    })
+  
+    return item.image;
   }
 
 };
@@ -75,5 +87,7 @@ async function putImageSingle(filename, buffer) {
 
   return link;
 }
+
+
 
 module.exports = { putImageSingle,imageService };

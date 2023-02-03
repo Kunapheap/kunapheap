@@ -124,5 +124,69 @@ module.exports = itemService = {
             console.log(err)
         }
           
+    },
+
+    updateItem : async (product_id,product_name,product_price,product_discount) => {
+        const product = await prisma.product.update({
+            where : {
+                product_id : product_id
+            },
+            data : {
+                product_name : product_name,
+                product_discount : product_discount,
+                product_price : product_price
+            }
+        })
+        return product;
+    },
+    itemDashboardData : async () => {
+
+        const category = await prisma.category.findMany();
+
+        const outStockItem = await prisma.item.findMany({
+
+            where : {
+                item_amount : 0
+            }
+            
+        })
+
+        const categories_amout = [];
+        for(let j=0;j<category.length;j++) {
+    
+            const products = await prisma.product.findMany({
+                where : {
+                    category_id : category[j].category_id
+                }
+            })
+        
+            var sum = 0;
+            for(let i=0;i<products.length;i++) {
+                const item = await prisma.item.findMany({
+                    where : {
+                        product_id : products[i].product_id
+                    }
+                })
+                const arrAmout = item.map(i => i.item_amount);
+                let temp = arrAmout.reduce((total,value) => total+value)
+                sum = sum + temp
+            }
+            categories_amout[j] = sum;
+        }
+
+        const Amout_item_in_stock = categories_amout.reduce((total,value) => total += value)
+
+        return {
+            "categories_amout" : categories_amout,
+            "out_stock_item" : outStockItem.length,
+            "Amout_item_in_stock" : Amout_item_in_stock
+        }
+    },
+    deleteItem : async (item_id) => {
+        const item = await prisma.item.delete({
+            where : {
+                item_id : item_id
+            }
+        })
     }
 }

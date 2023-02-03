@@ -1,4 +1,5 @@
-const {getAllCategory,getACategory,getAllCategoryName,categoryService} = require('../service/categoryService')
+const {getAllCategory,getACategory,getAllCategoryName,categoryService} = require('../service/categoryService');
+const itemService = require('../service/itemService');
 
 const categoryController = {
     createCategory : async (req,res) => {

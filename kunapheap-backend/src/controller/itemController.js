@@ -98,6 +98,43 @@ module.exports = itemController = {
         item : item,
         image : image
       })
+    },
+
+    updateItem : async (req,res) => {
+      (
+        {
+            product_id,
+            product_name,
+            product_price,
+            product_discount
+
+        } = req.body
+      )
+
+      const product = await itemService.updateItem(product_id,product_name,product_price,product_discount);
+
+      return res.status(200).send(product);
+
+    },
+    itemDashboardData : async (req,res) => {
+
+      const dashboardData = await itemService.itemDashboardData();
+      res.status(200).send(dashboardData)
+      
+    },
+
+    deleteItem : async (req,res) => {
+
+      try{
+        const item = await itemService.deleteItem(req.params.item_id);
+      return res.status(204).send({
+        msg : "success"
+      });
+      }catch(err) {
+        return res.send(err)
+      }
+      
     }
+    
 
 } 

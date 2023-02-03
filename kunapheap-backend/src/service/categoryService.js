@@ -34,8 +34,13 @@ async function getAllCategory() {
                 }
             }
         }
-    })
-    return category;
+    });
+
+   
+
+     return category
+    
+    // return category;
 }
 
 async function getACategory(category_name) {

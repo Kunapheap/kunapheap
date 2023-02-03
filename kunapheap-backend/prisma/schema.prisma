@@ -72,7 +72,7 @@ model Order {
 model Image {
   image_id String @id @default(uuid())
   image_link String 
-  item Item @relation(references: [item_id],fields: [item_id])
+  item Item @relation(references: [item_id],fields: [item_id], onDelete: Cascade)
   item_id String 
 }
 

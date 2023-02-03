@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const { token } = require('morgan');
 
 module.exports = async (req,res,next) => {
     try{
