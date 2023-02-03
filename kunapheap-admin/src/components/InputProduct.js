@@ -9,29 +9,21 @@ function InputProduct({setOneProduct,setSelectCategory}) {
     const [typedProduct,setTypedProduct] = useState("");
     const [productMatch, setProductMatch] = useState([]);
     const [toggleList,setToggleList] = useState(false)
+
     const product = useSelector((state) => state.product.value);
     const category = useSelector(state => state.category.value)
 
     const dispatch = useDispatch();
 
-    const getAllProduct = async () => {
-        const res = await axios.get(api.get_all_product);
-        console.log(res.data);
-        dispatch(setProduct(res.data));
-      };
+    
 
     const handleSelect = (product) => {
-
         setTypedProduct(product.product_name)
         setToggleList(false)
         setOneProduct(product)
     }
 
-    useEffect(() => {
-        if (product.length === 0) {
-            getAllProduct();
-          }
-    },[])
+
 
     useEffect(() => {
         if(typedProduct.length > 1) {

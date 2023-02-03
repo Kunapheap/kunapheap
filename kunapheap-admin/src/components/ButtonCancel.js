@@ -1,18 +1,15 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
-
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 function ButtonCancel() {
 
-  const notify = () => {
-    toast("Wow so easy!");
-  } 
+  const navigate = useNavigate()
+
   return (
     <div>
       <button
-      onClick={notify}
+      onClick={() => navigate(-1)}
        className="bg-gray-400 font-bold text-white rounded-md
        text-sm  lg:text-base
        px-3 lg:px-4

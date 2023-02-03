@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const itemSlide = createSlice({
     name : 'item',
     initialState : {
-        value : {}
+        value : undefined
     },
     reducers : {
         setItem : (state , action) => {

@@ -1,12 +1,18 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import api from "../app/api/apiRoute";
+import ReactLoading from 'react-loading';
 
 function SeeMore() {
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const item = useSelector(state => state.item.value);
+
+  const [image,setImage] = useState("")
+  const [loading,setLoading] = useState(false);
 
   const data = [
     {
@@ -22,17 +28,35 @@ function SeeMore() {
     }
   ]
 
+  const getImg = async () => {
+    setLoading(true)
+    const res = await axios.get(api.get_image+item.item_id);
+    setImage(res.data[0].image_link)
+    setLoading(false)
+  }
+
+  // useEffect(() => {
+    
+  // },[])
+
   useEffect(() => {
-
-    console.log(item)
-    console.log(new Date(item.item_created_date))
-  },[])
-
+   if(item.item_created_date === undefined) {
+    navigate("/")
+   } else {
+    getImg();
+   }
+  },[item])
+ 
   return (
 
     <div>
-
-      <div className="w-full bg-blue-200  lg:pl-6 rounded-l-2xl lg:rounded-l-3xl">
+      {
+        loading ?  
+        <div className="h-3/4 w-full flex justify-center items-center">
+        <ReactLoading type={"spin"} color={"#FFFFFF"} height={ '8rem'} width={'8rem'} />
+      </div>
+        : (
+          <div className="w-full bg-blue-200  lg:pl-6 rounded-l-2xl lg:rounded-l-3xl">
         {/* Tittle Product>See more */}
         <div className="w-full flex relative">
           <h1 className="font-bold text-xl ml-4 lg:text-3xl py-2 text-primary">
@@ -47,14 +71,15 @@ function SeeMore() {
         <div className="w-full h-screen bg-bgColor rounded-l-2xl ">
           <div className=" w-full overflow-auto flex-col lg:flex-row h-[80%] 
                   scrollbar-thin scrollbar-thumb-gray-400 scrollbar-thumb-rounded-full">
-            {/* Image */}
-            {/* <div>
-              <img src="" className="w-full h-52 bg-secondary mt-6"></img>
-            </div> */}
+            
 
-                <div className="w-full">
-                  {/* Input  */}
-                  <div className="w-full flex flex-col lg:flex-row gap-x-4 px-4 mt-6">
+                <div className="w-full flex">
+                <div className="w-[30%]">
+              <img alt="img" src={image} />
+              </div>
+            <div className="w-[70%]">
+              {/* Input  */}
+              <div className="w-full flex flex-col lg:flex-row gap-x-4 px-4 mt-6">
                     <div className="w-full">
                       <label className="text-sm md:text-base font-medium text-gray-600">
                         Date in stock
@@ -72,9 +97,9 @@ function SeeMore() {
                       </label>
                       <input
                         className="w-full h-8 md:h-10 py-2 pl-1 border-2 border-gray-300 rounded-md"
-                        placeholder={`${item.amountProduct >= 1
+                        placeholder={`${item.item_amount >= 1
                           ? "null"
-                          : `${item.dateOutStock}`
+                          : `${new Date(item.item_last_modify_date).toDateString()}`
                           }`}
                         disabled
                       />
@@ -121,7 +146,7 @@ function SeeMore() {
                         Color
                       </label>
                       <div className="flex">
-                        <div className="w-10 h-10 md:w-11 md:h-11 rounded-md"
+                        <div className="w-10 h-10 md:w-11 md:h-11 rounded-md border-4"
                           style={{ backgroundColor: item.ColorOnSide.color.color_name }}
                           ></div>
                         <p className="text-xs md:text-base font-semibold pl-2 py-3">{item.ColorOnSide.color.color_name}</p>
@@ -147,7 +172,7 @@ function SeeMore() {
                         </label>
                         <input
                           className="w-full h-8 md:h-10 py-2 pl-1 border-2 border-gray-300 rounded-md"
-                          placeholder="0"
+                          placeholder={`${item.product.product_discount * 100} %`}
                           disabled
                         />
                       </div>
@@ -160,9 +185,14 @@ function SeeMore() {
                     </div>
                   </div>
                 </div>
+            </div>
+                  
           </div>
         </div>
       </div>
+        )
+      }
+      
     </div>
   );
 }

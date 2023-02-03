@@ -16,6 +16,7 @@ import SeeMoreOrder from "./Pages/SeeMoreOrder";
 import UpdateProduct from "./Pages/UpdateProduct";
 import axios from "axios";
 import api from "./app/api/apiRoute";
+import Error404 from "./components/Error404";
 
 function App() {
 
@@ -32,7 +33,6 @@ function App() {
         },
       }
     );
-    console.log(res.data)
     setImg(res.data.user_image_link)
     
   }
@@ -62,13 +62,14 @@ function App() {
           <Routes >
             <Route path="/login" element={<LoginAdmin />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/" element={<Dashboard />} />
             <Route path="/addproduct" element={<AddProduct />} />
             <Route path="/order" element={<Order />} />
             <Route path="/productlist" element={<ProductList />} />
             <Route path="/SeeMore" element={<SeeMore/>}/>
             <Route path="/SeeMoreOrder" element={<SeeMoreOrder />}/>
             <Route path="/updateProduct" element={<UpdateProduct />} />
+            <Route path="/" element={<Dashboard />} />
+            <Route path="*" errorElement={< Error404 />} element={<Error404 />} />
           </Routes> 
           
         </div>

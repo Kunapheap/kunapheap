@@ -11,7 +11,6 @@ function DropdownSize({setSelectedSize,selectedSize}) {
 
   const getSize = async () => {
     const res = await axios.get(api.get_all_size);
-    console.log(res.data)
     setSize(res.data)
   }
 

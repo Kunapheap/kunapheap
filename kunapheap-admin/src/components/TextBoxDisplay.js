@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react'
 
 function TextBoxDisplay({ textBoxDisplayProp }) {
-  useEffect(() => {
-    console.log(textBoxDisplayProp)
-  }, [])
+
   return (
     <div>
       <label className='text-base font-medium pl-1 lg:text-lg xl:text-xl text-gray-700'

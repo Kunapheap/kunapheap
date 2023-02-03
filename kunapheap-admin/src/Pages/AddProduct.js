@@ -74,8 +74,6 @@ function AddProduct() {
             "Content-Type" : "application/json",
           }
         })
-        console.log(res.data)
-
           toast.success("successfully added");
 
       }catch(err) {
